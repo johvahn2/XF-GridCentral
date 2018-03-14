@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Order.OrderDetail"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             BackgroundColor="#eeeeee"
+             Title="Order Detail">
+    <ScrollView>
+        <StackLayout>
+            <Frame IsVisible="{Binding hasMessage}">
+                <StackLayout>
+                    <Label Text='Note' FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                    <Label Text="{Binding OrderMessage}"
+                               TextColor="Red" FontSize="Small"/>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="10">
+
+                        <StackLayout HorizontalOptions='StartAndExpand'>
+                            <Label Text="Order Date" FontSize="Small" HorizontalOptions="StartAndExpand" TextColor="{DynamicResource AccentColor}"/>
+                            <Label Text="Order #" FontSize="Small" HorizontalOptions="StartAndExpand" TextColor="{DynamicResource AccentColor}"/>
+                            <Label Text="Order Total" FontSize="Small" HorizontalOptions="StartAndExpand" TextColor="{DynamicResource AccentColor}"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding OrderDate}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0" TextColor="{DynamicResource AccentColor}"/>
+                            <Label Text="{Binding OrderNumber}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0" TextColor="{DynamicResource AccentColor}"/>
+                            <Label Text="{Binding OrderTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0" TextColor="{DynamicResource AccentColor}"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,0,0,-10">
+                        <BoxView BackgroundColor="#eeeeee" HeightRequest='1'/>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CancelOrder_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="Cancel Order" FontSize="Small" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                            <Label
+                        HorizontalOptions="EndAndExpand"
+				        FontSize="25"
+				        Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+				        Style="{StaticResource FontIcon}"
+				        TextColor="Black"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <Label Text='Shipment Details' FontSize="17" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+
+                    <StackLayout x:Name="ItemList">
+                        <!--Item List-->
+                    </StackLayout>
+
+                    <!--<StackLayout Margin="0,0,0,-10">
+                        --><!--<BoxView BackgroundColor="#eeeeee" HeightRequest='1'/>--><!--
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SeeMore_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="See More" FontSize="Micro" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                            <Label
+                        HorizontalOptions="EndAndExpand"
+				        FontSize="20"
+				        Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+				        Style="{StaticResource FontIcon}"
+				        TextColor="Black"/>
+                        </StackLayout>
+                    </StackLayout>-->
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <Label Text="{Binding OrderStatus}" TextColor="{Binding StatusColor}" IsVisible="{Binding ShowStateBar}" HorizontalOptions="CenterAndExpand" FontSize="Default" FontAttributes="Bold" Margin="5"/>
+                    <StackLayout>
+                            <Grid HeightRequest="110">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                                <!--Approved-->
+                            <Image Source="im_approved.png" Grid.Row="0" Grid.Column="0"/>
+                            <Label Text="Approved" HorizontalOptions="Center" FontAttributes="Bold" FontSize="11" Grid.Row="1" Grid.Column="0"/>
+                            <Label
+							FontSize="20"
+                            IsVisible="{Binding Stage1}"
+                            VerticalOptions="Center" Grid.Column="0" Grid.Row="2"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="Green"
+							/>
+
+                                <!--Preparation-->
+                            <Image Source="im_loading.jpg" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="Preparing" HorizontalOptions="Center" FontAttributes="Bold" FontSize="11" Grid.Row="1" Grid.Column="1"/>
+                            <Label
+							FontSize="20"
+                            IsVisible="{Binding Stage2}"
+                            VerticalOptions="Center" Grid.Column="1" Grid.Row="2"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="Green"
+							/>
+                                <!--In Transit-->
+                            <Image Source="im_truck.jpg" Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="In Transit" HorizontalOptions="Center" FontAttributes="Bold" FontSize="11" Grid.Row="1" Grid.Column="2"/>
+                            <Label
+							FontSize="20"
+                            IsVisible="{Binding Stage3}"
+                            VerticalOptions="Center" Grid.Column="2" Grid.Row="2"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="Green"
+							/>
+
+                            <!--Delivered-->
+                            <Image Source="im_house.png" Grid.Row="0" Grid.Column="3"/>
+                            <Label Text="Delivered" HorizontalOptions="Center" FontAttributes="Bold" FontSize="11" Grid.Row="1" Grid.Column="3"/>
+                            <Label
+							FontSize="20"
+                            IsVisible="{Binding Stage4}"
+                            VerticalOptions="Center" Grid.Column="3" Grid.Row="2"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="Green"
+							/>
+                        </Grid>
+                        </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text='Delivery Address' HorizontalOptions="StartAndExpand" FontSize="17" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                        <StackLayout Spacing="0" IsVisible="{Binding Changeable}">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ChgAddress_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="Change Address" HorizontalOptions="EndAndExpand" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}"/>
+                            <BoxView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="1" WidthRequest="50"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Spacing="0">
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small"/>
+                        <Label Text="{Binding Address1}" FontSize="Small"/>
+                        <Label Text="{Binding Address2}" FontSize="Small"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text='Delivery Time' HorizontalOptions="StartAndExpand" FontSize="17" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                        <StackLayout Spacing="0" IsVisible="{Binding Changeable}">
+                            <Label Text="Change Time" HorizontalOptions="EndAndExpand" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ChgTime_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="1" WidthRequest="50"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Label x:Name="DeliveryTime" Text="{Binding DeliveryTime}" FontAttributes="Bold" FontSize='Default'/>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <Label Text='Order Summary' HorizontalOptions="StartAndExpand" FontSize="17" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions='StartAndExpand'>
+                            <Label Text="Items" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="Shipping" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="Tax" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="Total" FontSize="Small" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding ItemTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                            <Label Text="{Binding ShippingTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                            <Label Text="{Binding TaxTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                            <Label Text="{Binding GrandTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <artina:Button
+                    x:Name="UpdateBtn"
+                    Command="{Binding UpdateCommand}"
+				    Style="{DynamicResource PrimaryActionButtonStyle}"
+				    VerticalOptions="End"
+				    Text="Update Order"
+                    Margin="25"
+                    BackgroundColor="{Binding BgUpdateBtn}"
+				    WidthRequest="{ artina:OnOrientationDouble
+					    LandscapePhone=200,
+					    LandscapeTablet=400 }"
+				    HorizontalOptions="{ artina:OnOrientationLayoutOptions
+					    PortraitPhone=Fill,
+					    LandscapePhone=Center,
+					    PortraitTablet=Fill,
+					    LandscapeTablet=Center }"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

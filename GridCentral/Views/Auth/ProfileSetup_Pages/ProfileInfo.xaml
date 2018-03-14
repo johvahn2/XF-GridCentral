@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             x:Class="GridCentral.Views.Auth.ProfileSetup_Pages.ProfileInfo"
+             BackgroundColor="{DynamicResource AccentColor}">
+    <ContentPage.Content>
+        <StackLayout Margin="0,30,0,0">
+            <Label 
+                x:Name="title"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                Margin="0,25,0,0"
+                FontSize="Large"/>
+            <Label
+                x:Name="FeelFreelbl"
+                TextColor="White"
+                Margin="0,0,0,35"
+                HorizontalOptions="Center"/>
+
+            <StackLayout Margin="75,0,25,0">
+                <StackLayout Orientation="Horizontal" Margin="0,18,0,18">
+                    <Label
+							FontSize="20"
+                            VerticalOptions="Center"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource Yellow_AccentColor}"
+							/>
+                    <Label
+                        x:Name="lbl1"
+                        HorizontalTextAlignment="Start"
+                        TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="0,18,0,18">
+                    <Label
+							FontSize="20"
+                            VerticalOptions="Center"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource Yellow_AccentColor}"
+							/>
+                    <Label
+                        x:Name="lbl2"
+                        HorizontalTextAlignment="Start"
+                        TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="0,18,0,18">
+                    <Label
+							FontSize="20"
+                            VerticalOptions="Center"
+							Text="{ x:Static local:GrialShapesFont.Check }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource Yellow_AccentColor}"
+							/>
+                    <Label
+                        x:Name="lbl3"
+                        HorizontalTextAlignment="Start"
+                        TextColor="White"/>
+                </StackLayout>
+            </StackLayout>
+
+            <artina:Button 
+					BackgroundColor="White"
+                    TextColor="#CB224E"
+                    Margin="50"
+                    WidthRequest="220"
+					x:Name="PrimaryActionButton"
+					Command="{Binding GetStartedCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

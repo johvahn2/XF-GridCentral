@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             Style="{StaticResource ContentPageStyle}"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="GridCentral.Views.ObjectViews.ProductView"
+             Title="Product Details">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem AutomationId="Product_Cart_Btn" x:Name="GoCartBtn" Icon="Cart-20x20.png"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <Grid
+        RowSpacing="0"
+        VerticalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/> <!--30-->
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Image-->
+            <AbsoluteLayout Grid.Row="0">
+                <cvv:CarouselViewControl 
+                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                x:Name="CarouselImgs" BackgroundColor="#eeeeee" ItemsSource="{Binding ItemImages}" ShowIndicators="True" CurrentPageIndicatorTintColor="{DynamicResource AccentColor}">
+                    <cvv:CarouselViewControl.ItemTemplate>
+                        <DataTemplate>
+                            <AbsoluteLayout>
+                                <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="{DynamicResource AccentColor}" IsRunning="{Binding Source={x:Reference Imager},Path=IsLoading}"/>
+                                <ffimageloading:CachedImage x:Name="Imager" Aspect="AspectFill" Source="{Binding Image}" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All"/>
+                            </AbsoluteLayout>
+                        </DataTemplate>
+                    </cvv:CarouselViewControl.ItemTemplate>
+                </cvv:CarouselViewControl>
+                <BoxView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImageTapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+            </AbsoluteLayout>
+
+            <Grid
+            Grid.Row="1"
+			Padding="20,15,20,0"
+			VerticalOptions="StartAndExpand"
+			RowSpacing="5">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--Price-->
+                <!--<Label Grid.Row="1"  HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Price,StringFormat='{0:F0} XCD'}" FontSize="Medium" FontAttributes="Bold"/>-->
+                <StackLayout Grid.Row="1" HorizontalOptions="End">
+                    <Label  VerticalOptions="Center" Text="{Binding Price,StringFormat='{0:F0} XCD'}" FontSize="Medium" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding IsDeal}">
+                        <StackLayout Spacing="0" Padding="0,0,30,0">
+                            <Label Text="{Binding bPrice,StringFormat='{0:F0} XCD'}" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Micro" TextColor="Gray"/>
+                            <BoxView BackgroundColor="Gray" HeightRequest="1" Margin="0,-7,0,0" WidthRequest="10"/>
+                        </StackLayout>
+                        <Label Text="{Binding DealPercentage,StringFormat='{0:F0}% off'}" HorizontalOptions="StartAndExpand" Margin="-32,0,0,0" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--Title-->
+                <Label Grid.Row="0" HorizontalOptions="Start" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"/>
+                <!--Manufactor-->
+                <Label Grid.Row="1" HorizontalOptions="Fill" Text="{Binding Manufacturer,StringFormat='Sold By {0:F0}'}" FontSize="Micro" TextColor="{DynamicResource AccentColor}" FontAttributes="Bold"/>
+
+                <ScrollView
+                Grid.Row="2"
+                Padding="0,10,0,0">
+                    <StackLayout Spacing="15">
+                        <!--Description-->
+                        <Label Text="{Binding Description}"
+                           FontSize="Small" 
+                           HorizontalOptions="Fill">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ReadMore_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <StackLayout IsVisible="{Binding Desc_isOverLoad}">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ReadMore_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label HorizontalTextAlignment="Center" Text="Read More" FontSize="Small" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="Start" Text="{Binding Status}" FontSize="Medium" TextColor="{Binding StatusColor}"/>
+                            <Label HorizontalOptions="EndAndExpand" Text="{Binding Ratings,StringFormat='{0:F0}% Rating'}" FontSize="Micro" TextColor="{DynamicResource AccentColor}" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <BoxView 
+						Style="{StaticResource BrandNameOrnamentStyle}"
+						BackgroundColor="{ DynamicResource AccentColor }"/>
+                        
+                        <StackLayout Spacing="0" BackgroundColor="Transparent" Grid.Row="3">
+                            <Label Margin="15,0,0,0" Text="Quantity" FontAttributes="Bold" TextColor="Black"/>
+                            <StackLayout Orientation="Horizontal" BackgroundColor="#eeeeee" Margin="10">
+                                <Button Text="-" Command="{Binding DecQuantityCommand}" BackgroundColor="{DynamicResource AccentColor}" TextColor="White" WidthRequest="60" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding cQuantity}" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Button Text="+" Command="{Binding IncQuantityCommand}" BackgroundColor="{DynamicResource AccentColor}" TextColor="White" HeightRequest="50" WidthRequest="60" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <artina:Button
+                AutomationId="Add_To_Cart_Btn"
+                Grid.Row="3"
+                Margin="15"
+                Command="{Binding AddToCartCommand}"
+				Style="{DynamicResource PrimaryActionButtonStyle}"
+				VerticalOptions="End"
+				x:Name="AddCartBtn"
+				WidthRequest="{ artina:OnOrientationDouble
+					LandscapePhone=200,
+					LandscapeTablet=400 }"
+				HorizontalOptions="{ artina:OnOrientationLayoutOptions
+					PortraitPhone=Fill,
+					LandscapePhone=Center,
+					PortraitTablet=Fill,
+					LandscapeTablet=Center }"/>
+
+            <StackLayout Grid.Row="4">
+                <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="100">
+                    <cvv:CarouselViewControl x:Name="CarouselImages1" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad1}" ShowIndicators="False">
+                        <cvv:CarouselViewControl.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout>
+                                    <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="{DynamicResource AccentColor}" IsRunning="{Binding Source={x:Reference Advert1},Path=IsLoading}"/>
+                                    <ffimageloading:CachedImage x:Name="Advert1" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </cvv:CarouselViewControl.ItemTemplate>
+                    </cvv:CarouselViewControl>
+                    <BoxView x:Name="ViewAd1" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="10" IsVisible="{Binding IsBtnEnable}">
+                    <Label HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource AccentColor}" Text="Don't see a question?"/>
+                    <Button 
+                            HorizontalOptions="End"
+                            BorderRadius="2"
+                            FontSize="Small"
+                            WidthRequest="70" 
+                            HeightRequest="40" 
+                            x:Name="AskBtn" 
+                            Command="{Binding AskQuestionCommand}"
+                            BackgroundColor="{DynamicResource AccentColor}" 
+                            TextColor="White"/>
+                </StackLayout>
+
+                <Frame>
+                    <StackLayout x:Name="QuestionList">
+                        <Label x:Name="NoQtnLbl" TextColor="Black" IsVisible="{Binding IsEmpty}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Margin="0,5,0,10" IsVisible="{Binding QuestionMax}">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Question_ViewMore"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label x:Name="SeeMorelbl" Margin="10,0,0,0" FontSize="Small" TextColor="{DynamicResource AccentColor}" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                        <Label
+                                    HorizontalOptions="EndAndExpand"
+				                    FontSize="20"
+				                    Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+				                    Style="{StaticResource FontIcon}"
+				                    TextColor="Black"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="#eeeeee" HeightRequest='1'/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

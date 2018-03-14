@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Contact.ContactUs"
+             Title="Contact Us">
+    <StackLayout Margin="35">
+        <!--E-Mail-->
+        <StackLayout Orientation="Horizontal" Margin="5">
+            <Image Source="im_mail.png" HeightRequest="35" WidthRequest="35"/>
+            <Label x:Name="emaillbl" Margin="10,0,0,0" VerticalOptions="Center"/>
+        </StackLayout>
+        
+        <!--PhoneNumber-->
+        <StackLayout Orientation="Horizontal" Margin="5">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Phone_Tapped"/>
+            </StackLayout.GestureRecognizers>
+            <Image Source="im_phone.png" HeightRequest="35" WidthRequest="35"/>
+            <Label x:Name="phonenumberlbl" Margin="10,0,0,0" VerticalOptions="Center"/>
+        </StackLayout>
+        
+        <!--FaceBook-->
+        <StackLayout Orientation="Horizontal" Margin="5">
+            <Image Source="im_facebook.png" HeightRequest="35" WidthRequest="35"/>
+            <Label x:Name="facebooklbl" Margin="10,0,0,0" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <!--Twitter-->
+        <StackLayout Orientation="Horizontal" Margin="5">
+            <Image Source="im_twitter.png" HeightRequest="35" WidthRequest="35"/>
+            <Label x:Name="twitterlbl" Margin="10,0,0,0" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <!--Instgram-->
+        <StackLayout Orientation="Horizontal" Margin="5">
+            <Image Source="im_instagram.png" HeightRequest="35" WidthRequest="35"/>
+            <Label x:Name="instagramlbl" Margin="10,0,0,0" VerticalOptions="Center"/>
+        </StackLayout>
+
+
+        <Button x:Name="FedbackBtn" Margin="10,30,10,10" Text="Send Feedback" BackgroundColor="{DynamicResource AccentColor}" TextColor="White"/>
+    </StackLayout>
+</ContentPage>

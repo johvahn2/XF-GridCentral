@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Order.ConfirmOrder"
+             xmlns:local="clr-namespace:GridCentral"
+             BackgroundColor="#eeeeee"
+             Title="Confirm Order">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="CancelBtn" Text="Cancel"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text='Order Summary' FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <StackLayout HorizontalOptions='StartAndExpand'>
+                                <Label Text="Items" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="Shipping" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="Tax" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="Total" FontSize="Small" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="EndAndExpand">
+                                <Label Text="{Binding ItemTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                                <Label Text="{Binding ShippingTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                                <Label Text="{Binding TaxTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                                <Label Text="{Binding GrandTotal,StringFormat='{0:F0} XCD'}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start" Margin="0,0,25,0"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text='Delivery Address' HorizontalOptions="StartAndExpand" FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                            <StackLayout Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ChgAddress_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="{Binding Address_Mod_Txt}" HorizontalOptions="EndAndExpand" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}"/>
+                                <BoxView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="1" WidthRequest="50"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding noAddress}">
+                            <Label Text="Add an Address" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Spacing="0" IsVisible="{Binding asAddress}">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small"/>
+                            <Label Text="{Binding Address1}" FontSize="Small"/>
+                            <Label Text="{Binding Address2}" FontSize="Small"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text='Delivery Time' HorizontalOptions="StartAndExpand" FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                            <StackLayout Spacing="0">
+                                <Label Text="Change Time" HorizontalOptions="EndAndExpand" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ChgTime_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <BoxView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="1" WidthRequest="50"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Label x:Name="DeliveryTime" Text="{Binding DeliveryTime}" FontAttributes="Bold" FontSize='Default'/>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Label Text='Payment Method' FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                        <Label Text="{Binding PaymentMethod}" Margin="8" FontSize="Small" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                        <Frame IsVisible="{Binding UseCard}">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Spacing="-4">
+                                    <Label Text='Payment Card' FontSize="Small" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                                    <Label Text='Visa ending in 3355' Margin="8" FontSize="Micro" FontAttributes="Bold"/>
+                                </StackLayout>
+
+                                <Label
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="CenterAndExpand"
+                                    VerticalTextAlignment="Center"
+					                FontSize="30"
+					                Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+					                Style="{StaticResource FontIcon}"
+					                TextColor="Black"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Label Text='Shipment Details' FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                        
+                        <StackLayout x:Name="ItemList">
+                            <!--ItemList-->
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="PLACE ORDER" Margin="30" Command="{Binding PlaceOrderCommand}" BackgroundColor="{DynamicResource AccentColor}" TextColor="White"/>
+
+                <Frame HeightRequest="70">
+                    <StackLayout Spacing="0" Margin="0,-7,0,0">
+                        <Label HorizontalTextAlignment="Center" Text="By Placing Your Order You Agree To Our" FontSize="Micro" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="Terms of Services" FontSize="Micro" TextColor="Orange" WidthRequest="150" 
+                             HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text=" and " FontSize="Micro" HorizontalOptions="CenterAndExpand"  Grid.Row="0" />
+                        <Label Text="Return Policy" FontSize="Micro" TextColor="Orange" HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center" Grid.Row="0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

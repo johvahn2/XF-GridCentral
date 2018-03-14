@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="GridCentral.Views.Home.Template.ProductGridItemTemplate">
+        <StackLayout
+		Spacing="0">
+
+        <AbsoluteLayout>
+            <ffimageloading:CachedImage 
+            x:Name="thumbnailer"
+			FadeAnimationEnabled="true" 
+			Source="{Binding Thumbnail}" 
+            BackgroundColor="#eeeeee"
+			HeightRequest="{Binding ThumbnailHeight}" 
+            AbsoluteLayout.LayoutBounds="0,0,1,1"  
+            AbsoluteLayout.LayoutFlags="All"
+			Aspect="AspectFill"/>
+            <ActivityIndicator Color="{DynamicResource AccentColor}" IsRunning="{Binding Source={x:Reference thumbnailer},Path=IsLoading}"
+                                   AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
+
+            <StackLayout 
+			Padding="0,10,0,10"
+			Spacing="0">
+                <Label 
+				Text="{Binding Manufacturer, StringFormat='BY {0:F0}'}"
+				FontSize="{ artina:OnOrientationDouble
+					PortraitPhone=9,
+					LandscapePhone=9,
+					PortraitTablet=10,
+					LandscapeTablet=10 }"
+				HorizontalOptions="Fill"
+				TextColor="{ DynamicResource AccentColor }"/>
+
+                <Label 
+				Text="{Binding SummaryName}"
+				FontSize="{ artina:OnOrientationDouble
+					PortraitPhone=16,
+					LandscapePhone=16,
+					PortraitTablet=18,
+					LandscapeTablet=18 }"
+				FontAttributes="Bold"
+				HorizontalOptions="Fill"
+				TextColor="{DynamicResource BaseTextColor}"/>
+
+                <Label 
+				Text="{Binding Price,StringFormat='{0:F0} XCD'}"
+				FontSize="{ artina:OnOrientationDouble
+					PortraitPhone=15,
+					LandscapePhone=15,
+					PortraitTablet=17,
+					LandscapeTablet=17 }"
+				HorizontalOptions="Fill"
+				TextColor="{DynamicResource BaseTextColor}"/>
+            </StackLayout>
+
+        </StackLayout>
+</ContentView>

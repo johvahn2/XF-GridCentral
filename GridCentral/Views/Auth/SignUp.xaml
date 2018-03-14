@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+		     xmlns:local="clr-namespace:GridCentral;assembly=GridCentral"
+             x:Class="GridCentral.Views.Navigation.SignUp"
+             NavigationPage.HasNavigationBar="False"
+             Title="Simple Sign Up"
+             BackgroundColor="{DynamicResource BasePageColor}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+
+            <!-- GRADIENT-->
+            <Image 
+				AbsoluteLayout.LayoutBounds="0,0,1,44"
+				AbsoluteLayout.LayoutFlags="WidthProportional"
+				Style="{ StaticResource StatusBarShimStyle }"
+				VerticalOptions="Start"/>
+
+            <ScrollView
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				AbsoluteLayout.LayoutFlags="All"
+				VerticalOptions="FillAndExpand"	
+				Padding="{ DynamicResource MainWrapperPadding }">
+
+                <!-- MAIN CONTAINER -->
+                <Grid
+					ColumnSpacing="0"
+					RowSpacing="0"
+					Padding="20,30,20,20"
+					HorizontalOptions="Fill"
+					VerticalOptions="FillAndExpand" >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- CLOSE ICON -->
+                    <Label 
+						Grid.Row="0"
+						TextColor="{ DynamicResource BaseTextColor }"
+						Style="{DynamicResource IconCloseLabelStyle}" 
+						HorizontalOptions="End"
+						VerticalOptions="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCloseButtonClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                    <!-- HEADER -->
+                    <StackLayout 
+						Grid.Row="0" 
+						Spacing="3"
+						Padding="0,20,0,0"
+						InputTransparent="true">
+
+                        <!-- LOGO -->
+                        <Grid
+							Grid.Row="1" 
+							WidthRequest="60"
+							HeightRequest="60"
+							VerticalOptions="Center"
+							HorizontalOptions="Center">
+                            
+                            <Image
+                                Source="ic_logo.png"
+                                HeightRequest="120"
+                                WidthRequest="120"/>
+                            <!--<Label
+								TextColor="{ DynamicResource OverImageTextColor }"
+								FontSize="42"
+								Text="{ x:Static local:GrialShapesFont.LogoGrial }" 
+								Style="{StaticResource FontIcon}"
+								HorizontalTextAlignment="Center"
+								VerticalTextAlignment="Center"/>--> 
+                        </Grid>
+
+                        <!-- WELCOME TEXT -->
+                        <Label
+							x:Name="Title"
+							FontSize="{ artina:OnOrientationDouble
+								PortraitPhone=22,
+								LandscapePhone=22,
+								PortraitTablet=28,
+								LandscapeTablet=28 }"
+							HorizontalTextAlignment="Center"/>
+                        <Label
+							x:Name="Sublbl"
+							HorizontalTextAlignment="Center"
+							FontSize="{ artina:OnOrientationDouble
+								PortraitPhone=15,
+								LandscapePhone=15,
+								PortraitTablet=18,
+								LandscapeTablet=18 }"/>
+
+                        <!--SEPARATOR-->
+                        <BoxView 
+							WidthRequest="80"
+							HeightRequest="1"
+							HorizontalOptions="Center"
+							VerticalOptions="End"
+							BackgroundColor="{DynamicResource BaseTextColor}"/>
+                    </StackLayout>
+
+
+                    <!---FIELDS CONTAINER-->
+                    <Grid
+						Grid.Row="1"
+						RowSpacing="30"
+						Padding="0,20,0,20"
+						VerticalOptions="Center" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- ICON BACKGROUND -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="0"
+							FontSize="40"
+							Text="{Binding Shape}"
+							Style="{StaticResource RoundShape}" 
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource ComplementColor}"
+							VerticalOptions="Center"
+						    HorizontalOptions="Center"/>
+
+                        <!-- ICON -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="0"
+							FontSize="14"
+							Text="{ x:Static local:GrialShapesFont.Email }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="White"
+							VerticalOptions="Center"
+							HorizontalOptions="Center"/>
+
+                        <!--EMAIL ENTRY-->
+
+                        <StackLayout
+                            Grid.Column="1"
+							Grid.ColumnSpan="2"
+							Grid.Row="0">
+                            
+                            <Entry
+                            x:Name="Email"
+							HeightRequest="40"
+                            Keyboard="Email"
+                            Text="{Binding Email}"
+							BackgroundColor="{ DynamicResource PlaceholderColorEntry }"
+							PlaceholderColor="{ DynamicResource BaseTextColor }">
+
+                                <Entry.Behaviors>
+                                    <artina:EmailValidatorBehavior x:Name="emailValidator"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            
+                            <Label
+							HorizontalOptions="Start"
+							x:Name="ValidEmailLbl" IsVisible="false"
+							Style="{DynamicResource ValidationEntryErrorStyle}">
+
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+									Binding="{Binding Source={x:Reference emailValidator}, Path=IsValid}"
+									Value="false">
+                                        <Setter Property="IsVisible" Value="true" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                        
+                        <!-- ICON BACKGROUND -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="1"
+							FontSize="40"
+							Text="{Binding Shape}"
+							Style="{StaticResource RoundShape}" 
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource ComplementColor}"
+							VerticalOptions="Center"
+						    HorizontalOptions="Center"/>
+
+                        <!-- ICON -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="1"
+							FontSize="14"
+							Text="{ x:Static local:GrialShapesFont.PhoneIphone }" 
+							Style="{StaticResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="White"
+							VerticalOptions="Center"
+							HorizontalOptions="Center"/>
+
+                        <!--PhoneNumber ENTRY-->
+                        <Entry
+                            x:Name="Phonenumber"
+							Grid.Column="1"
+							Grid.ColumnSpan="2"
+							Grid.Row="1"
+                            Keyboard="Telephone"
+							HeightRequest="40"
+                            Text="{Binding PhoneNumber}"
+							BackgroundColor="{ DynamicResource PlaceholderColorEntry }"
+							PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+
+                        <!-- ICON BACKGROUND -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="2"
+							FontSize="40"
+							Text="{Binding Shape}"
+							Style="{StaticResource RoundShape}" 
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource ComplementColor}"
+							VerticalOptions="Center"
+						    HorizontalOptions="Center"/>
+
+                        <!-- ICON -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="2"
+							FontSize="14"
+							Text="{ x:Static local:GrialShapesFont.Lock }" 
+							Style="{DynamicResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="White"
+							VerticalOptions="Center"
+							HorizontalOptions="Center"/>
+
+                        <!--PASSWORD ENTRY-->
+                        <Entry
+                            x:Name="Password"
+							Grid.Column="1"
+							Grid.ColumnSpan="2"
+							Grid.Row="2"
+							HeightRequest="40"
+                            IsPassword="True"
+                            Text="{Binding Password}"
+							BackgroundColor="{ DynamicResource PlaceholderColorEntry }"
+							PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+                        
+
+                        <!-- ICON BACKGROUND -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="3"
+							FontSize="40"
+							Text="{Binding Shape}"
+							Style="{StaticResource RoundShape}" 
+							HorizontalTextAlignment="Center"
+							TextColor="{DynamicResource ComplementColor}"
+							VerticalOptions="Center"
+						    HorizontalOptions="Center"/>
+
+                        <!-- ICON -->
+                        <Label
+							Grid.Column="0"
+							Grid.Row="3"
+							FontSize="14"
+							Text="{ x:Static local:GrialShapesFont.Lock }" 
+							Style="{DynamicResource FontIcon}"
+							HorizontalTextAlignment="Center"
+							TextColor="White"
+							VerticalOptions="Center"
+							HorizontalOptions="Center"/>
+
+                        <!--REPASSWORD ENTRY-->
+                        <Entry
+                            x:Name="RePassword"
+							Grid.Column="1"
+							Grid.ColumnSpan="2"
+							Grid.Row="3"
+							HeightRequest="40"
+                            Text="{Binding RePassword}"
+                            IsPassword="True"
+							BackgroundColor="{ DynamicResource PlaceholderColorEntry }"
+							PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+
+                    </Grid>
+
+                    <!-- BUTTONS -->
+                    <StackLayout 
+						Grid.Row="2"
+						Spacing="10"
+						HorizontalOptions="Fill"
+						VerticalOptions="End">
+
+                        <!-- SINGUP -->
+                        <artina:Button
+                            x:Name="SignupBtn"
+							Style="{DynamicResource PrimaryActionButtonStyle}"
+							VerticalOptions="End"
+                            Command="{Binding SignUpCommand}"
+							WidthRequest="{ artina:OnOrientationDouble
+								LandscapePhone=200,
+								LandscapeTablet=400 }"
+							HorizontalOptions="{ artina:OnOrientationLayoutOptions
+								PortraitPhone=Fill,
+								LandscapePhone=Center,
+								PortraitTablet=Fill,
+								LandscapeTablet=Center }"/>
+
+                    </StackLayout>
+                </Grid>
+
+
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

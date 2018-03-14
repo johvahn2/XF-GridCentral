@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.ObjectViews.ContactSeller">
+    <AbsoluteLayout>
+        <Image Source="ic_close.png" AbsoluteLayout.LayoutBounds="0.98,0.01,25,25" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Margin="0,100,0,0">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label HorizontalTextAlignment="End" x:Name="Emaillbl" FontAttributes="Bold"/>
+                    <Label HorizontalTextAlignment="End" x:Name="Namelbl" FontAttributes="Bold"/>
+                    <Label HorizontalTextAlignment="End" x:Name="Phonelbl" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding Email}"/>
+                    <Label Text="{Binding FullName}"/>
+                    <Label Text="{Binding PhoneNumber}"/>
+                </StackLayout>
+            </StackLayout>
+            <Button Margin="40" Command="{Binding CallCommand}" x:Name="CallBtn" BackgroundColor="{DynamicResource AccentColor}" TextColor="White"/>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:elmt="clr-namespace:GridCentral.Elements"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:xlab="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             x:Class="GridCentral.Views.Profile.AddItem"
+             Title="Add Item">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <Entry Text="{Binding Title}" Placeholder="Title" Margin="5" PlaceholderColor="#BDBDBD" TextColor="Black"/>
+                    <StackLayout>
+                        <Label Text="Type Description:" FontSize="13"  Margin="5,0,0,-5"/>
+                        <Editor Text="{Binding Description}" BackgroundColor="#efefef" HeightRequest="80"  Margin="5" TextColor="Black"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Pick Category:" FontSize="13"  Margin="5,0,0,-5"/>
+                        <elmt:BindablePicker x:Name="Categories" Title="Category" Margin="5" TextColor="Black" ItemsSource="{Binding CategoryItems}" SelectedIndex="{Binding CategoryIndex}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Text="{Binding Quantity}" WidthRequest="150" Keyboard="Numeric" Placeholder="Quantity" Margin="5" PlaceholderColor="#BDBDBD" TextColor="Black"/>
+                        <StackLayout>
+                            <Label Text="Pick State:" FontSize="13"  Margin="5,0,0,-5"/>
+                            <elmt:BindablePicker x:Name="States" Title="State" Margin="5" TextColor="Black" ItemsSource="{Binding StateItems}" SelectedIndex="{Binding StateIndex}" WidthRequest="150"/>
+                        </StackLayout>
+                        <!--<Entry Text="{Binding State}" WidthRequest="150" Placeholder="State(eg:New)" Margin="5" PlaceholderColor="#BDBDBD" TextColor="Black"/>-->
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Images:" FontSize="13" Margin="10,5,0,5"/>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <ffimageloading:CachedImage x:Name="Img1" BackgroundColor="#dbdbdb" Aspect="AspectFill" Grid.Column="0"/>
+                        <!--<Image x:Name="Img1" BackgroundColor="#dbdbdb" Aspect="AspectFill" Grid.Column="0"/>-->
+                        <ffimageloading:CachedImage x:Name="Img2" BackgroundColor="#dbdbdb" Aspect="AspectFill" Grid.Column="1"/>
+                        <ffimageloading:CachedImage x:Name="Img3" BackgroundColor="#dbdbdb" Aspect="AspectFill" Grid.Column="2"/>
+                        <ffimageloading:CachedImage x:Name="Img4" BackgroundColor="#dbdbdb" Aspect="AspectFill" Grid.Column="3"/>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout  x:Name="FixedPrice" Margin="20,5,0,0">
+                        <Entry Placeholder="Fixed Price" Text="{Binding FixedPricer}" Keyboard="Numeric"/>
+                    </StackLayout>
+                </StackLayout>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <artina:Button
+                            x:Name="AddItemBtn"
+                            Command="{Binding AddItemCommand}"
+							Style="{DynamicResource PrimaryActionButtonStyle}"
+							VerticalOptions="End"
+							Text="Add Item"
+							WidthRequest="{ artina:OnOrientationDouble
+								LandscapePhone=200,
+								LandscapeTablet=400 }"
+							HorizontalOptions="{ artina:OnOrientationLayoutOptions
+								PortraitPhone=Fill,
+								LandscapePhone=Center,
+								PortraitTablet=Fill,
+								LandscapeTablet=Center }"/>
+                    <artina:Button
+                            x:Name="CancelItemBtn"
+                            Grid.Column="1"
+                            Command="{Binding CancelCommand}"
+							Style="{DynamicResource PrimaryActionButtonStyle}"
+							VerticalOptions="End"
+							Text="Cancel"
+							WidthRequest="{ artina:OnOrientationDouble
+								LandscapePhone=200,
+								LandscapeTablet=400 }"
+							HorizontalOptions="{ artina:OnOrientationLayoutOptions
+								PortraitPhone=Fill,
+								LandscapePhone=Center,
+								PortraitTablet=Fill,
+								LandscapeTablet=Center }"/>
+                 </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

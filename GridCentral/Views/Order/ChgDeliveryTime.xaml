@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Order.ChgDeliveryTime"
+             Title="Delivery Time">
+    <StackLayout>
+        <Image Source="ic_close.png" HeightRequest="25" WidthRequest="25" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Margin="8">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Close"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+            <TimePicker x:Name="FromTime" Format="HH:mm" HorizontalOptions="StartAndExpand"/>
+            <Label Text="TO" FontAttributes="Bold" Margin="20,0,20,0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+            <TimePicker x:Name="ToTime" Format="HH:mm" HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+        <Label Text="Note: Hour Delivery Hours are between 11:00 AM to 7:00 PM" FontAttributes="Bold" FontSize="10" HorizontalOptions="CenterAndExpand"/>
+        <Button x:Name="ChgBtn" Text="Change Time" BackgroundColor="{DynamicResource AccentColor}" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+    </StackLayout>
+</ContentPage>

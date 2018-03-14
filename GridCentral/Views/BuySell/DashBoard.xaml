@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:nav="clr-namespace:GridCentral.Views.Common"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             x:Class="GridCentral.Views.BuySell.DashBoard">
+    <ContentPage.Content>
+        <!-- MAIN CONTAINER -->
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- CUSTOM NAVBAR -->
+            <nav:BuySellNavBar x:Name="navbar" Grid.Row="0"/>
+
+            <!--Content-->
+            <ScrollView
+			Grid.Row="1"
+            Grid.Column="0">
+                <StackLayout>
+                    <StackLayout>
+                        <AbsoluteLayout HeightRequest="82">
+                            <BoxView BackgroundColor="#E4DAC2" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                            <StackLayout Spacing="0" AbsoluteLayout.LayoutBounds="0.2,0.12,100,40" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                <Label x:Name="lbl1" 
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+
+                                <Label x:Name="lbl2" 
+                                   FontSize="16"
+                                   Margin="0,-2,0,0"
+                                   FontAttributes="Bold"/>
+                            </StackLayout>
+                            <Button x:Name="ExploreBtn"
+                                Command="{Binding GoToGridShopCommand}"
+                                AbsoluteLayout.LayoutBounds="0.2,1,85,40"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                BackgroundColor="{DynamicResource AccentColor}"
+                                TextColor="White"
+                                FontSize="Micro"
+                                HeightRequest="40"
+                                FontAttributes="Bold"/>
+
+                            <Image Source="item_bag.jpeg"
+                               BackgroundColor="#cccccc"
+                               Aspect="Fill"
+                               AbsoluteLayout.LayoutBounds="1,0,0.4,1"
+                               AbsoluteLayout.LayoutFlags="All"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="74">
+                            <cvv:CarouselViewControl x:Name="CarouselImages1" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad1}" ShowIndicators="False">
+                                <cvv:CarouselViewControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <AbsoluteLayout>
+                                            <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="{DynamicResource LightRed}" IsRunning="{Binding Source={x:Reference Advert1},Path=IsLoading}"/>
+                                            <Image x:Name="Advert1" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                        </AbsoluteLayout>
+                                    </DataTemplate>
+                                </cvv:CarouselViewControl.ItemTemplate>
+                            </cvv:CarouselViewControl>
+                            <BoxView x:Name="ViewAd1" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                        </AbsoluteLayout>
+                    </StackLayout>
+
+                    <!---Connection Catch-->
+                    <StackLayout IsVisible="{Binding IsNoConnection}" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label x:Name="Connectionlbl" VerticalOptions="Center" TextColor="Gray" FontAttributes="Bold" FontSize="Medium"/>
+                        <Button x:Name="RetryBtn" TextColor="White" BackgroundColor="{DynamicResource AccentColor}"/>
+                    </StackLayout>
+                    
+                    <!--Items-->
+                    <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"/>
+
+                    <Grid 
+				        Padding="10" 
+				        ColumnSpacing="10" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!---Left Column Content -->
+                        <StackLayout 
+					        x:Name="LeftColumn"
+					        Grid.Column="0">
+                        </StackLayout>
+
+                        <!-- Right Column Content-->
+                        <StackLayout 
+					        x:Name="RightColumn"
+					        Grid.Column="1">
+                        </StackLayout>
+
+                    </Grid>
+                    <Button HorizontalOptions="CenterAndExpand"
+                            IsVisible="{Binding ShowLoadMore}"
+                            x:Name="LoadMoreBtn"
+                            Text="Load More"
+                            BackgroundColor="{DynamicResource AccentColor}"
+                            TextColor="White"
+                            FontSize="Micro"
+                            HeightRequest="40"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

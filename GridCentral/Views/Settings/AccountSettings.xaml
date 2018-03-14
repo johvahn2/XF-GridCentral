@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Navigation.Settings.AccountSettings"
+             xmlns:xlab="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:elmt="clr-namespace:GridCentral.Elements"
+             xmlns:local="clr-namespace:GridCentral"
+             BackgroundColor="#eeeeee"
+             Title="Account Settings">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout Margin="20">
+                    <artina:CircleImage
+                        x:Name="Profileimage"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Aspect="AspectFill"
+                        Source="{Binding ProfileImage}"
+                        BorderColor="Gray">
+                        <artina:CircleImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnImageTap"/>
+                        </artina:CircleImage.GestureRecognizers>
+                    </artina:CircleImage>
+
+                    <StackLayout Orientation="Horizontal" Margin="20">
+                        <Label Text="Notifications" FontSize="14" HorizontalOptions="StartAndExpand"/>
+                        <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Notfiy}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Placeholder="First Name" Text="{Binding FirstName}" HorizontalOptions="Start" WidthRequest="150"/>
+                        <Entry Placeholder="Last Name" Text="{Binding LastName}" HorizontalOptions="End" WidthRequest="150"/>
+                    </StackLayout>
+                    <Entry Placeholder="Display Name" Text="{Binding Displayname}"/>
+                    <Entry Placeholder="Phone" Text="{Binding PhoneNumber}"/>
+
+                    <!--<xlab:BindableRadioGroup 
+                            x:Name="GenderPicker" 
+                            Orientation="Horizontal" 
+                            VerticalOptions="Start"
+                            ItemsSource="{Binding Gender}"
+                            SelectedIndex="{Binding GenderTypeIndex}"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="2"/>-->
+                    <StackLayout VerticalOptions="Start" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2">
+                        <Label Text="Gender:" FontSize="13"  Margin="5,0,0,-5"/>
+                        <elmt:BindablePicker x:Name="GenderPicker" Title="Gender" Margin="5" TextColor="Black" ItemsSource="{Binding Gender}" SelectedIndex="{Binding GenderTypeIndex}" WidthRequest="150" VerticalOptions="End"/>
+                    </StackLayout>
+                    
+                    <DatePicker
+                            Grid.Column="1"
+							Grid.ColumnSpan="2"
+							Grid.Row="3"
+                            Format="MM/dd/yyyy"
+                            Date="{Binding bDay}"/>
+
+                    <Label Text="Reset Password" FontSize="Small" FontAttributes="Bold" Margin="10,10,0,0"/>
+                    <Frame>
+                        <StackLayout Margin="8">
+
+                            <Entry IsPassword="True" Placeholder="Current Password" Text="{Binding CurrPassword}"/>
+
+                            <Entry IsPassword="True" Placeholder="New Password" Text="{Binding NewPassword}"/>
+
+                            <Entry IsPassword="True" Placeholder="Re-Password" Text="{Binding ReNewPassword}"/>
+                            
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <artina:Button
+                    Margin="20,10,20,20"
+					Style="{DynamicResource PrimaryActionButtonStyle}"
+					VerticalOptions="EndAndExpand"
+					Text="Update"
+                    Command="{Binding UpdateCommand}"
+					WidthRequest="{ artina:OnOrientationDouble
+						LandscapePhone=200,
+						LandscapeTablet=400 }"
+					HorizontalOptions="{ artina:OnOrientationLayoutOptions
+						PortraitPhone=Fill,
+						LandscapePhone=Center,
+						PortraitTablet=Fill,
+						LandscapeTablet=Center }"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

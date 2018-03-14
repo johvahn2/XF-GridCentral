@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="GridCentral.Views.ObjectViews.Template.ItemQuestionTemplate">
+        <StackLayout>
+                <StackLayout Margin="0,0,0,-5" Orientation="Horizontal">
+                    <Label Text="{Binding Question,StringFormat='Q: {0:F0}'}" FontAttributes="Bold" FontSize="Small"/>
+                    <Label
+					        FontSize="25"
+					        Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+					        Style="{StaticResource FontIcon}"
+					        HorizontalTextAlignment="Center"
+					        TextColor="Black"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="EndAndExpand"
+                            Margin="0,0,10,0"
+					        />
+                </StackLayout>
+                <Label Text="{Binding Answer,StringFormat='A: {0:F0}'}" FontSize="Small"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Displayname}" FontSize="Micro"/>
+                    <Label Text="|" FontSize="Micro"/>
+                    <Label Text="{Binding Timeago}" FontSize="Micro"/>
+                </StackLayout>
+                <BoxView BackgroundColor="#eeeeee" HeightRequest='1'/>
+        </StackLayout>
+</ContentView>

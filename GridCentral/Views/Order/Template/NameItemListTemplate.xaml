@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Order.Template.NameItemListTemplate">
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Text="{Binding ItemName}" FontSize="15" FontAttributes="Bold" Margin="5"/>
+
+            <Label Grid.Column="1" Text="{Binding Quantity,StringFormat='QTY: {0:F0}'}" FontSize="15" FontAttributes="Bold" Margin="5"/>
+
+            <Label Grid.Column="2" Text="{Binding Price,StringFormat='{0:F0} XCD'}" FontSize="15" FontAttributes="Bold" Margin="5"/>
+        </Grid>
+
+        <BoxView BackgroundColor="#dddddd" HeightRequest="1"/>
+    </StackLayout>
+</ContentView>

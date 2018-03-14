@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             x:Class="GridCentral.Views.Notifaction.Notify"
+             Title="My Notifications">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="broomIcon" Command="{Binding ClearCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center">
+                <Label IsVisible="{Binding IsEmpty}" x:Name="Emptylbl" FontAttributes="Bold" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+                <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <ListView x:Name="listView" HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresing}"  ItemsSource="{Binding NotifyListRev}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+					                FontSize="20"
+					                Text="{Binding Shape}"
+					                Style="{StaticResource RoundShape}" 
+					                HorizontalTextAlignment="Center"
+					                TextColor="{Binding IconBg}"
+					                VerticalOptions="Center"
+					                HorizontalOptions="Center"
+					                />
+
+                                <Label
+					                FontSize="14"
+					                Text="{ Binding Icon }" 
+					                Style="{StaticResource FontIcon}"
+					                HorizontalTextAlignment="Center"
+					                TextColor="White"
+					                VerticalOptions="Center"
+					                HorizontalOptions="Center"
+					                />
+                                <StackLayout Spacing="0" Grid.Column="1">
+                                    <Label VerticalOptions="Start" HorizontalOptions="Start" Text="{Binding Header}" FontSize="Medium"/>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                        <Label VerticalOptions="End" HorizontalOptions="Start" Text="{Binding Message}" FontSize="Small"/>
+                                        <Label
+					                        FontSize="25"
+					                        Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+					                        Style="{StaticResource FontIcon}"
+					                        HorizontalTextAlignment="Center"
+					                        TextColor="Black"
+                                            VerticalOptions="StartAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            Margin="0,0,10,0"
+					                        />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label
+					FontSize="20"
+					Text="{Binding Shape}"
+					Style="{StaticResource RoundShape}" 
+					HorizontalTextAlignment="Center"
+					TextColor="{Binding IconBg}"
+					VerticalOptions="Center"
+					HorizontalOptions="Center"
+					/>
+
+                --><!-- ICON --><!--
+                <Label
+					FontSize="14"
+					Text="{ Binding Icon }" 
+					Style="{StaticResource FontIcon}"
+					HorizontalTextAlignment="Center"
+					TextColor="White"
+					VerticalOptions="Center"
+					HorizontalOptions="Center"
+					/>
+                <StackLayout Spacing="0" Grid.Column="1">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                        <Label VerticalOptions="Start" HorizontalOptions="Start" Text="My Header" FontSize="Medium"/>
+                        <Label
+					        FontSize="25"
+					        Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+					        Style="{StaticResource FontIcon}"
+					        HorizontalTextAlignment="End"
+					        TextColor="Black"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="EndAndExpand"
+                            Margin="0,0,10,0"
+					        />
+                    </StackLayout>
+                    <Label VerticalOptions="End" HorizontalOptions="Start" Text="My message you can read" FontSize="Small"/>
+                </StackLayout>
+            </Grid>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

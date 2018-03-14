@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Navigation.MainMenu"
+	         Title="Main Menu" 
+	         Style="{ DynamicResource MainMenuStyle }"
+	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+	         xmlns:temp="clr-namespace:GridCentral.Views.Navigation.Template"
+             xmlns:local="clr-namespace:GridCentral"
+	         Icon="{ StaticResource HamburguerIcon }">
+    <AbsoluteLayout>
+        <!--<StackLayout x:Name="StatusLayout" AbsoluteLayout.LayoutBounds="0.98,0.08" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Label x:Name="togglerName" FontSize="6"/>
+            <Switch x:Name="toggler" IsToggled="{Binding toggler}" Toggled="Switch_Toggled" artina:SwitchProperties.TintColor="#34c134"/>
+        </StackLayout>-->
+        <Grid
+        AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+		RowSpacing="0"
+		VerticalOptions="FillAndExpand" 
+		Padding="0,20,0,0"
+		Margin="0,0,0,10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <Grid
+			Grid.Row="0"
+			HorizontalOptions="Start" 
+			VerticalOptions="Start"
+			RowSpacing="0">
+
+
+                <!-- LOGO -->
+                <local:BrandBlock 
+				Grid.Row="0"/>
+
+                <!--<Switch Grid.Row="0" x:Name="toggler" Margin="5"
+                    HorizontalOptions="EndAndExpand"/>-->
+
+                <!--IF NOT SIGNED IN-->
+                <!--<Button Text="Sign In" 
+                    BackgroundColor="{DynamicResource AccentColor}" 
+                    TextColor="White"
+                    WidthRequest="90"
+                    HeightRequest="40"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    x:Name="SignInBtn"
+                    IsVisible="True"/>-->
+                <!-- SCREENS COUNTER -->
+                <!--<local:Badge 
+				BadgeText="{ Binding AllSamples.Count }" 
+				BadgeTextColor="#FFF" 
+				BadgeBackgroundColor="#F00"
+				HorizontalOptions="End"
+				VerticalOptions="Start"
+			/>-->
+
+            </Grid>
+
+            <ListView 
+		    Grid.Row="1"
+			x:Name="sampleListView" 
+			ItemSelected="OnItemSelected"
+			ItemsSource="{ Binding SamplesGroupedByCategory }"
+			IsGroupingEnabled="true"
+			GroupDisplayBinding="{ Binding Name }"
+			SeparatorVisibility="None"
+			VerticalOptions="FillAndExpand"
+			Style="{ DynamicResource MainMenuListViewStyle }"
+			CachingStrategy="RecycleElement">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <temp:MainMenuGroupHeaderTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <temp:MainMenuItemTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </AbsoluteLayout>
+</ContentPage>

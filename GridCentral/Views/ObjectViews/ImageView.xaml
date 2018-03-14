@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="GridCentral.Views.ObjectViews.ImageView">
+    <AbsoluteLayout>
+        <cvv:CarouselViewControl 
+            AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="#cccccc"  x:Name="CarouselImages" ShowIndicators="True" CurrentPageIndicatorTintColor="{DynamicResource AccentColor}">
+            <cvv:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <ffimageloading:CachedImage Aspect="AspectFit" Source="{Binding Image}"/>
+                </DataTemplate>
+            </cvv:CarouselViewControl.ItemTemplate>
+        </cvv:CarouselViewControl>
+        <Image BackgroundColor="White" Source="ic_close.png" AbsoluteLayout.LayoutBounds="0.98,0.01,25,25" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </AbsoluteLayout>
+</ContentPage>

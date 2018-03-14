@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Title="Questions"
+             x:Class="GridCentral.Views.ObjectViews.pQuestion">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_search.png" Command="{Binding SearchCommand}"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <StackLayout IsVisible="{Binding ShowSearchBar}">
+            <SearchBar
+                x:Name="SearchFor"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchFor}}" SearchCommand="{Binding SearchTxt}" Text="{Binding TxtSearch}"
+                HorizontalOptions="Start" VerticalOptions="Center"
+                Margin="0,0,0,20"
+                WidthRequest="500" HeightRequest="40"
+                TranslationY="20"
+                PlaceholderColor="Black"
+                BackgroundColor="Transparent"
+                Placeholder="Search Item.."/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="10" IsVisible="{Binding IsBtnEnable}">
+            <Label HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource AccentColor}" Text="Don't see a question?"/>
+            <Button 
+                HorizontalOptions="End"
+                BorderRadius="2"
+                FontSize="Small"
+                WidthRequest="70" 
+                HeightRequest="40" 
+                Text="Ask" 
+                Command="{Binding AskQuestionCommand}"
+                BackgroundColor="{DynamicResource AccentColor}" 
+                TextColor="White"/>
+        </StackLayout>
+        <ListView x:Name="listView" HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsListRefereshing}"  ItemsSource="{Binding QuestionlistRev}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="10">
+                            <StackLayout Margin="0,0,0,-5" Orientation="Horizontal">
+                                <Label Text="{Binding Question,StringFormat='Q: {0:F0}'}" FontAttributes="Bold" FontSize="Small"/>
+                                <Label
+					        FontSize="25"
+					        Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+					        Style="{StaticResource FontIcon}"
+					        HorizontalTextAlignment="Center"
+					        TextColor="Black"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="EndAndExpand"
+                            Margin="0,0,10,0"
+					        />
+                            </StackLayout>
+                            <Label Text="{Binding Answer,StringFormat='A: {0:F0}'}" FontSize="Small"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Asked_By}" FontSize="Micro"/>
+                                <Label Text="|" FontSize="Micro"/>
+                                <Label Text="{Binding Asked_At}" FontSize="Micro"/>
+                            </StackLayout>
+                            <BoxView BackgroundColor="#eeeeee" HeightRequest='1'/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

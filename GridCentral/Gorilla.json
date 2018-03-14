@@ -1,0 +1,53 @@
+{
+    "navigationPage": {
+        "all": [true],
+		  "knownAssemblies":[
+        {
+            "name": "Xamarin.Forms.Theme.Dark",
+            "types" : null
+        },
+        {
+            "name": "Syncfusion.ListView.XForms",
+            "types" : null
+        },
+		{
+            "name": "Syncfusion.SfNavigationDrawer.XForms",
+            "types" : null
+        },        
+		{
+            "name": "UXDivers.Artina.Shared",
+            "types" : null
+        },        
+		{
+            "name": "UXDivers.Artina.Effects",
+            "types" : null
+        },             
+        {
+            "name": "FFImageLoading.Forms.Droid",
+            "types" : null
+        },
+		,             
+        {
+            "name": "XLabs.Forms",
+            "types" : null
+        },
+        
+  ],
+        "exclude": [
+            "WalkthroughFlatStepItemTemplate.xaml",
+	        "WalkthroughGradientItemTemplate.xaml",
+	        "WalkthroughStepItemTemplate.xaml",
+	        "WalkthroughVariantStepItemTemplate.xaml",
+	        "WalkthroughFlatPage.xaml",
+	        "WalkthroughGradientPage.xaml",
+	        "WalkthroughPage.xaml",
+	        "WalkthroughVariantPage.xaml",
+          "LoginPage.xaml",
+          "Login.xaml",
+            "PasswordRecoveryPage.xaml",
+            "SignUpPage.xaml",
+            "SimpleLoginPage.xaml",
+            "SimpleSignUpPage.xaml"
+		]
+    }
+}

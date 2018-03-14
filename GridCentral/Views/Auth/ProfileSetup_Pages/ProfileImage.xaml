@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xlab="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             x:Class="GridCentral.Views.Auth.ProfileSetup_Pages.ProfileImage"
+             BackgroundColor="{DynamicResource AccentColor}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <artina:CircleImage
+            x:Name="Profileimage"
+            Grid.Row="0"
+            Margin="30"
+            WidthRequest="110"
+            HeightRequest="110"
+            BorderColor="White"
+            Aspect="AspectFill"
+            Source="user_placeholder.png">
+            <artina:CircleImage.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnImageTap"/>
+            </artina:CircleImage.GestureRecognizers>
+        </artina:CircleImage>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1">
+            <Label Text="{Binding FirstName}" FontSize="32" TextColor="White"/>
+            <Entry x:Name="DisplaynameEntry" Text="{Binding Displayname}"  WidthRequest="200"/>
+        </StackLayout>
+        <!--<Label VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Text="{Binding FirstName}" FontSize="32" TextColor="White"/>-->
+        <Label x:Name="Addlbl" Grid.Row="2" HorizontalOptions="Center" FontSize="Default" TextColor="White"/>
+
+        <artina:Button 
+                    Grid.Row="3"
+                    Margin="42"
+					BackgroundColor="White"
+                    TextColor="#CB224E"
+                    WidthRequest="220"
+					x:Name="PrimaryActionButton"
+					Command="{Binding ProfileImage_NextCommand}"
+				/>
+    </Grid>
+</ContentPage>

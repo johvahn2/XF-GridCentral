@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.ObjectViews.DescriptionView">
+    <ScrollView>
+        <AbsoluteLayout>
+            <Label x:Name="Description"
+               Margin="10,25,10,0"
+               FontSize="Default" 
+               HorizontalOptions="Fill"/>
+            <Image BackgroundColor="White" Source="ic_close.png" AbsoluteLayout.LayoutBounds="0.98,0.01,25,25" AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>

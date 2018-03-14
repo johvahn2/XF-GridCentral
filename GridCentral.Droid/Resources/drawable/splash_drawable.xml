@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+	<layer-list
+	 	xmlns:android="http://schemas.android.com/apk/res/android">
+		<item>
+			<shape android:shape="rectangle">
+				<solid android:color="@color/White" />
+        <padding 
+					android:left="0dip" 
+					android:top="0dip"
+					android:right="0dip" 
+					android:bottom="0dip" />
+				</shape>
+		</item>
+		<item>
+			<bitmap android:src="@drawable/gridcentral_splash"
+			android:gravity="center"
+      />
+      <!--<ImageView
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:scaleType="center"
+        android:src="@drawable/gridcentral" />-->
+		</item>
+    <item>   
+        <bitmap android:src="@drawable/sharefold_splash"
+			  android:gravity="bottom"
+        />
+   </item>
+	</layer-list>

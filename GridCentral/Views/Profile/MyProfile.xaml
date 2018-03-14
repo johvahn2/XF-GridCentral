@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="GridCentral.Views.Profile.MyProfile"
+             BackgroundColor="White"
+             Title="My Profile">
+    <StackLayout Margin="0,20,0,0">
+        <artina:CircleImage
+            x:Name="profilePic"
+            HeightRequest="100"
+            WidthRequest="100"
+            Aspect="AspectFill"
+            Source="{Binding ProfileImage}"
+            BorderColor="Gray"/>
+
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Label Text="{Binding FullName}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding JoinYear,StringFormat='Member since: {0:F0}'}" HorizontalTextAlignment="Center" TextColor="#666666"/>
+        </StackLayout>
+        <!--<Frame>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="togglerName"  FontAttributes="Bold" FontSize="Medium"/>
+                    <Switch x:Name="toggler" HorizontalOptions="EndAndExpand" IsToggled="{Binding toggler}" Toggled="Switch_Toggled" artina:SwitchProperties.TintColor="#34c134"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>-->
+        <Frame BackgroundColor="White" OutlineColor="Gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="GoToMyItems"/>
+            </Frame.GestureRecognizers>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Items for sale" FontSize="Medium" FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GoToMyItems"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+					FontSize="30"
+					Text="{ x:Static local:GrialShapesFont.ArrowRight }" 
+					Style="{StaticResource FontIcon}"
+					TextColor="Black"/>
+            </StackLayout>
+        </Frame>
+        <AbsoluteLayout BackgroundColor="#cccccc" VerticalOptions="EndAndExpand" Margin="0,0,0,40" HeightRequest="175">
+            <cvv:CarouselViewControl x:Name="CarouselImages1" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad1}" ShowIndicators="False">
+                <cvv:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <AbsoluteLayout>
+                            <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="{DynamicResource LightRed}" IsRunning="{Binding Source={x:Reference Advert1},Path=IsLoading}"/>
+                            <Image x:Name="Advert1" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                        </AbsoluteLayout>
+                    </DataTemplate>
+                </cvv:CarouselViewControl.ItemTemplate>
+            </cvv:CarouselViewControl>
+            <BoxView x:Name="ViewAd1" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+        </AbsoluteLayout>
+    </StackLayout>
+</ContentPage>

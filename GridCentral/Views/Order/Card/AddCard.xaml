@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:elmt="clr-namespace:GridCentral.Elements"
+		     xmlns:local="clr-namespace:GridCentral;assembly=GridCentral"
+             Title="Add Card"
+             x:Class="GridCentral.Views.Order.Card.AddCard">
+    <ContentPage.Content>
+        <ScrollView
+			Padding="{ DynamicResource MainWrapperPadding }">
+            <Grid
+				Padding="20"
+				RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <!---NAME FIELD-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--NAME ENTRY-->
+                    <Entry
+						Grid.Column="0"	
+						HeightRequest="40"
+						Placeholder="Name"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                    <!--LAST NAME ENTRY-->
+                    <Entry
+						Grid.Column="1"
+						Margin="6,0,0,0"
+						HeightRequest="40"
+						Placeholder="Last Name"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--CARD NUMBER ENTRY-->
+                    <Entry
+						Grid.Column="0"
+						HeightRequest="40"
+						Placeholder="Card Number"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                    <!--CVV NUMBER-->
+                    <Entry
+						Grid.Column="1"
+						Margin="6,0,0,0"
+						HeightRequest="40"
+						Placeholder="CVV"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+                </Grid>
+
+                <!--EXPIRATION DATE-->
+                <Entry
+						Grid.Row="2"
+						HeightRequest="40"
+						Placeholder="Expriation Date"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                <!--ADDRESS LINE 1-->
+                <Entry
+						Grid.Row="3"
+						HeightRequest="40"
+						Placeholder="Address Line 1"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                <!-- ADDRESS LINE 2 -->
+                <Entry
+                        BackgroundColor="Gray"
+						Grid.Row="4"
+						HeightRequest="40"
+						Placeholder="Address Line 2"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                <Grid Grid.Row="5" RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <!--CITY ENTRY-->
+                    <Entry
+						Grid.Column="0"
+						HeightRequest="40"
+						Placeholder="City"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                    <!-- STATE ENTRY -->
+                    <Entry
+						Grid.Column="1"
+						HeightRequest="40"
+						Placeholder="State/Region"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                    <!--CITY ENTRY-->
+                    <Entry
+						Grid.Column="0"
+						Grid.Row="1"
+						HeightRequest="40"
+						Placeholder="Zip Code"
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+
+                    <!-- Country Picker -->
+
+                    <elmt:BindablePicker 
+                            x:Name="Categories" 
+                            Title="Countries" 
+                            HeightRequest="40" 
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            TextColor="Black" ItemsSource="{Binding Countries}" SelectedIndex="{Binding Countryindex}"/>
+                    
+                </Grid>
+                <Button Text="Add" Style="{DynamicResource PrimaryActionButtonStyle}" Grid.Row="6" VerticalOptions="End"/>
+                
+                <!-- Picture -->
+                <Grid Grid.Row="7" VerticalOptions="EndAndExpand"> <!--Need to go Down-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image  Source="visa_mastercard.png" HeightRequest="60" VerticalOptions="EndAndExpand"/>
+                </Grid>
+
+                <Frame HeightRequest="70" Grid.Row="8">
+                    <StackLayout Spacing="0" Margin="0,-7,0,0">
+                        <Label HorizontalTextAlignment="Center" Text="Your Card Information Will be secure on your" FontSize="Micro" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="Private Policy" FontSize="Micro" TextColor="Orange" WidthRequest="150" 
+                             HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

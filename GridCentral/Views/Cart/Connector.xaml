@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:GridCentral.Views.Cart"
+            Style="{StaticResource ContentPageStyle}"
+            x:Class="GridCentral.Views.Cart.Connector"
+            BackgroundColor="{DynamicResource BaseTextColor}"
+            BarTextColor="White">
+
+    <local:Cart x:Name="CartTab" BackgroundColor="White"/>
+    <local:SaveLater x:Name="SaveLaterTab" BackgroundColor="White"/>
+
+</TabbedPage>

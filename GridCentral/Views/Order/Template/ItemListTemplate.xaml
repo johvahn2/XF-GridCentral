@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Order.Template.ItemListTemplate">
+    <StackLayout>
+        <Grid HeightRequest="90">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding Thumbnail}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
+
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+
+            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <Label Text="{Binding Quantity,StringFormat='QTY {0:F0}'}" FontSize="Default" HorizontalOptions="Start"/>
+                <Label Text="{Binding Price,StringFormat='{0:F0} XCD'}" FontSize="Default" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <Label Grid.Column="1" Grid.Row="2" Text="{Binding Manufacturer,StringFormat='Sold By {0:F0}'}" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}"/>
+        </Grid>
+
+        <BoxView BackgroundColor="#dddddd" HeightRequest="1"/>
+    </StackLayout>
+</ContentView>

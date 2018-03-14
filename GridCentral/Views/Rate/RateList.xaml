@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             x:Class="GridCentral.Views.Rate.RateList"
+             BackgroundColor="#eeeeee"
+             Title="Rate Products">
+    <StackLayout>
+        <StackLayout  HorizontalOptions="Center">
+            <Label IsVisible="{Binding noItems}" Text="No Items Found" FontAttributes="Bold" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+            <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <ListView BackgroundColor="Transparent" x:Name="listView" HasUnevenRows="True"  ItemsSource="{Binding RateList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="90">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Thumbnail}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
+
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+
+                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="{Binding Quantity,StringFormat='QTY {0:F0}'}" FontSize="Default" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Price,StringFormat='$ {0:F0}'}" FontSize="Default" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+
+                            <Label Grid.Column="1" Grid.Row="2" Text="{Binding Manufacturer,StringFormat='Sold By {0:F0}'}" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout HeightRequest="150">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button x:Name="Rone" HeightRequest="60" WidthRequest="60" Text="1"/>
+                <Button x:Name="Rtwo" HeightRequest="60" WidthRequest="60" Text="2"/>
+                <Button x:Name="Rthree" HeightRequest="60" WidthRequest="60" Text="3"/>
+                <Button x:Name="Rfour" HeightRequest="60" WidthRequest="60" Text="4"/>
+                <Button x:Name="Rfive" HeightRequest="60" WidthRequest="60" Text="5"/>
+            </StackLayout>
+            <artina:Button
+                        Margin="30"
+                        x:Name="RateBtn"
+						Style="{DynamicResource PrimaryActionButtonStyle}"
+						VerticalOptions="End"
+						Text="Rate"
+						WidthRequest="{ artina:OnOrientationDouble
+							LandscapePhone=200,
+							LandscapeTablet=400 }"
+						HorizontalOptions="{ artina:OnOrientationLayoutOptions
+							PortraitPhone=Fill,
+							LandscapePhone=Center,
+							PortraitTablet=Fill,
+							LandscapeTablet=Center }"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

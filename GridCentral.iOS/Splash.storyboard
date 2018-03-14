@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" launchScreen="YES" useAutolayout="YES" useTraitCollections="YES" initialViewController="23">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="22">
+            <objects>
+                <viewController id="23" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="20"/>
+                        <viewControllerLayoutGuide type="bottom" id="21"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="center" id="24">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="473" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="sharefold_splash.png">
+                                <rect key="frame" x="112" y="472" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinX="YES" flexibleMaxY="YES" flexibleMinY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="919" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="gridcentral_splash.png">
+                                <rect key="frame" x="112" y="202" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinX="YES" flexibleMaxY="YES" flexibleMinY="YES"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="85"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="splash.png" width="274" height="83"/>
+        <image name="Images/Calendar/datecell.png" width="47" height="45"/>
+        <image name="Images/Calendar/datecellmarked.png" width="46" height="30"/>
+        <image name="Images/Calendar/datecellselected.png" width="16" height="16"/>
+        <image name="Images/Calendar/leftarrow.png" width="14" height="17"/>
+        <image name="Images/Calendar/rightarrow.png" width="14" height="17"/>
+        <image name="Images/Calendar/shadow.png" width="320" height="198"/>
+        <image name="Images/Calendar/today.png" width="16" height="16"/>
+        <image name="Images/Calendar/todayselected.png" width="16" height="16"/>
+        <image name="Images/Calendar/topbar.png" width="320" height="44"/>
+        <image name="Images/Checkbox/checked_checkbox.png" width="25" height="25"/>
+        <image name="Images/Checkbox/unchecked_checkbox.png" width="25" height="25"/>
+        <image name="Images/RadioButton/checked.png" width="24" height="24"/>
+        <image name="Images/RadioButton/unchecked.png" width="24" height="24"/>
+        <image name="add-20x20.png" width="20" height="20"/>
+        <image name="blue_watch.jpeg" width="700" height="477"/>
+        <image name="broom-20x20.png" width="20" height="20"/>
+        <image name="buyandsell_logo.png" width="568" height="173"/>
+        <image name="Cart-20x20.png" width="20" height="20"/>
+        <image name="generic_bg_image.jpg" width="375" height="667"/>
+        <image name="grid_ic.png" width="512" height="512"/>
+        <image name="gridcentral.png" width="567" height="148"/>
+        <image name="gridcentrall.png" width="274" height="84"/>
+        <image name="hamburguer_icon.png" width="64" height="64"/>
+        <image name="ic_close.png" width="48" height="48"/>
+        <image name="ic_logo.png" width="268" height="276"/>
+        <image name="im_approved.png" width="256" height="256"/>
+        <image name="im_facebook.png" width="128" height="128"/>
+        <image name="im_house.png" width="225" height="225"/>
+        <image name="im_instagram.png" width="128" height="128"/>
+        <image name="im_loading.jpg" width="225" height="225"/>
+        <image name="im_mail.png" width="128" height="128"/>
+        <image name="im_phone.png" width="128" height="128"/>
+        <image name="im_truck.jpg" width="266" height="189"/>
+        <image name="im_truckk.png" width="225" height="225"/>
+        <image name="im_twitter.png" width="128" height="128"/>
+        <image name="item_bag.jpeg" width="500" height="332"/>
+        <image name="login_bg.jpg" width="375" height="667"/>
+        <image name="login_bg_tablet.jpg" width="1024" height="1024"/>
+        <image name="logo.png" width="64" height="64"/>
+        <image name="pass_recovery_bg.jpg" width="371.5" height="661"/>
+        <image name="pass_recovery_bg_tablet.jpg" width="1024" height="1024"/>
+        <image name="save-20x20.png" width="20" height="20"/>
+        <image name="search-20x20.png" width="20" height="20"/>
+        <image name="signup_bg.jpg" width="371.5" height="661"/>
+        <image name="social_header_bg_0.jpg" width="375" height="366"/>
+        <image name="social_header_bg_1.jpg" width="371.5" height="362.5"/>
+        <image name="user_placeholder.png" width="210" height="210"/>
+        <image name="user_profile_0.jpg" width="102" height="102"/>
+        <image name="user_profile_1.jpg" width="100" height="100"/>
+        <image name="walkthrough_generic_phone_bg.png" width="375" height="667"/>
+        <image name="welcome_bg.jpg" width="375" height="667"/>
+        <image name="welcome_bg_tablet.jpg" width="1024" height="1024"/>
+        <image name="sharefold_splash.png" width="120" height="139"/>
+        <image name="gridcentral_splash.png" width="276" height="69"/>
+    </resources>
+    <color key="tintColor" colorSpace="calibratedRGB" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1"/>
+</document>

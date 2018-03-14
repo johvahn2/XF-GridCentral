@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xlab="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             x:Class="GridCentral.Views.Auth.ProfileSetup_Pages.ProfileInterest"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label 
+                    x:Name="title"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="Black"
+                    Margin="0,25,0,0"
+                    FontSize="Large"/>
+
+
+                <StackLayout Spacing="1" HorizontalOptions="StartAndExpand" Margin="72,15,0,0">
+                    <!--<xlab:CheckBox x:Name="box1" Checked="{Binding Books}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box2" Checked="{Binding Cars}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box3" Checked="{Binding Clothing}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box4" Checked="{Binding Electronics}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box5" Checked="{Binding Furniture}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box6" Checked="{Binding Personal_Care}"  TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box7" Checked="{Binding Makeup_Beauty}"  TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box8" Checked="{Binding Toys_Games}" TextColor="Black"/>-->
+                    <xlab:CheckBox x:Name="box13" Checked="{Binding Appliances}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box9" Checked="{Binding Art}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box10" Checked="{Binding Baby}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box1" Checked="{Binding Books}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box2" Checked="{Binding Cars}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box3" Checked="{Binding Clothing}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box4" Checked="{Binding Electronics}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box5" Checked="{Binding Furniture}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box11" Checked="{Binding Home_Supplies}" TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box6" Checked="{Binding Personal_Care}"  TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box7" Checked="{Binding Makeup_Beauty}"  TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box12" Checked="{Binding Jewelry}"  TextColor="Black"/>
+                    <xlab:CheckBox x:Name="box8" Checked="{Binding Toys_Games}" TextColor="Black"/>
+                </StackLayout>
+
+                <artina:Button 
+					    BackgroundColor="{DynamicResource AccentColor}"
+                        Margin="60"
+                        TextColor="White"
+                        WidthRequest="220"
+					    x:Name="PrimaryActionButton"
+					    Command="{Binding Interest_NextCommand}"
+				    />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

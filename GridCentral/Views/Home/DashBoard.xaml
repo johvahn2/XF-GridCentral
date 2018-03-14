@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Navigation.Home.DashBoard"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:nav="clr-namespace:GridCentral.Views.Common"
+	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+	         BackgroundColor="#eeeeee"
+	         Title="Custom NavBar">
+    <!-- MAIN CONTAINER -->
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- CUSTOM NAVBAR -->
+        <nav:CustomNavBar x:Name="navbar" Grid.Row="0"/>
+
+        <!--Content-->
+        <ScrollView
+			Grid.Row="1"
+            Grid.Column="0">
+            <StackLayout>
+                <StackLayout>
+                    <AbsoluteLayout HeightRequest="82">
+                        <BoxView BackgroundColor="#1C355E" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                        <StackLayout Spacing="0" AbsoluteLayout.LayoutBounds="0.2,0.12,100,40" AbsoluteLayout.LayoutFlags="PositionProportional">
+                            <Label x:Name="lbl1" 
+                                   TextColor="White"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                            <Label x:Name="lbl2" 
+                                   TextColor="White"
+                                   FontSize="16"
+                                   Margin="0,-2,0,0"
+                                   FontAttributes="Bold"/>
+                        </StackLayout>
+                        <Button x:Name="ExploreBtn"
+                                Command="{Binding GoToBuySellCommand}"
+                                AbsoluteLayout.LayoutBounds="0.2,1,85,40"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                BackgroundColor="{DynamicResource AccentColor}"
+                                TextColor="White"
+                                FontSize="Micro"
+                                HeightRequest="40"
+                                FontAttributes="Bold"/>
+
+                        <Image Source="blue_watch.jpeg"
+                               BackgroundColor="#cccccc"
+                               Aspect="Fill"
+                               AbsoluteLayout.LayoutBounds="1,0,0.4,1"
+                               AbsoluteLayout.LayoutFlags="All"/>
+                    </AbsoluteLayout>
+                    <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="74">
+                        <cvv:CarouselViewControl x:Name="CarouselImages1" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad1}" ShowIndicators="False">
+                            <cvv:CarouselViewControl.ItemTemplate>
+                                <DataTemplate>
+                                    <AbsoluteLayout>
+                                        <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="Red" IsRunning="{Binding Source={x:Reference Advert1},Path=IsLoading}"/>
+                                        <Image x:Name="Advert1" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                    </AbsoluteLayout>
+                                </DataTemplate>
+                            </cvv:CarouselViewControl.ItemTemplate>
+                        </cvv:CarouselViewControl>
+                        <BoxView x:Name="ViewAd1" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                    </AbsoluteLayout>
+                </StackLayout>
+                
+                <!---Connection Catch-->
+                <StackLayout IsVisible="{Binding IsNoConnection}" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="NoConnectinlbl" VerticalOptions="Center" TextColor="Gray" FontAttributes="Bold" FontSize="Medium"/>
+                    <Button x:Name="RetryBtn" TextColor="White" BackgroundColor="{DynamicResource AccentColor}"/>
+                </StackLayout>
+                
+                <!-- Interest List-->
+                <Label x:Name="Interestlbl" Text="Your Interests" Margin="10,10,10,0" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Frame Margin="7">
+                    <StackLayout>
+                        <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"/>
+
+                        <Grid 
+				        Padding="10" 
+				        ColumnSpacing="10" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!---Left Column Content -->
+                            <StackLayout
+					            x:Name="LeftColumn"
+					            Grid.Column="0">
+                            </StackLayout>
+
+                            <!-- Right Column Content-->
+                            <StackLayout 
+					            x:Name="RightColumn"
+					            Grid.Column="1">
+                            </StackLayout>
+
+                        </Grid>
+
+                    </StackLayout>
+                </Frame>
+
+                <!--Deal One List-->
+                <Label Text=" Flash Deals" Margin="10,10,10,0" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Frame Margin="7">
+                    <StackLayout>
+                        <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy_Deal}" IsVisible="{Binding IsBusy_Deal}" HorizontalOptions="CenterAndExpand"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150"/>
+                                <RowDefinition Height="150"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout x:Name="DealList" Orientation="Horizontal" Grid.Row="0">
+                            </StackLayout>
+                            <StackLayout x:Name="DealList2" Orientation="Horizontal" Grid.Row="1">
+                            </StackLayout>
+                        </Grid>
+
+                        <Button HorizontalOptions="EndAndExpand" Text="See More" FontSize="Micro" WidthRequest="80" HeightRequest="40" TextColor="White" BackgroundColor="{DynamicResource AccentColor}" Clicked="Deal_ViewMore"/>
+                    </StackLayout>
+                </Frame>
+
+                <!---Ads Space-->
+                <Label Text="Featured Brands" Margin="10,10,10,0" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"/>
+                
+                <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="100" Margin="7">
+                    <cvv:CarouselViewControl x:Name="CarouselImages2" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad2}" ShowIndicators="False">
+                        <cvv:CarouselViewControl.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout>
+                                    <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="Red" IsRunning="{Binding Source={x:Reference Advert2},Path=IsLoading}"/>
+                                    <Image x:Name="Advert2" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </cvv:CarouselViewControl.ItemTemplate>
+                    </cvv:CarouselViewControl>
+                    <BoxView x:Name="ViewAd2" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
+
+
+                <!--New Item List-->
+                <Label Text="New Items" Margin="10,10,10,0" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Frame Margin="7">
+                    <StackLayout>
+                        <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy_Recent}" IsVisible="{Binding IsBusy_Deal}" HorizontalOptions="CenterAndExpand"/>
+
+                        <StackLayout x:Name="NewList">
+                            <!--Item List-->
+                        </StackLayout>
+
+                        <Button HorizontalOptions="EndAndExpand" Text="See More" FontSize="Micro" WidthRequest="80" HeightRequest="40" TextColor="White" BackgroundColor="{DynamicResource AccentColor}" Clicked="Recent_ViewMore"/>
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

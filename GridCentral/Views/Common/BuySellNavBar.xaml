@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Common.BuySellNavBar"
+             xmlns:local="clr-namespace:GridCentral;assembly=GridCentral" 
+	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared">
+    <Grid 
+            HeightRequest="100"
+            RowSpacing="-20"
+			Style="{ StaticResource CustomNavBarStyle }"
+            BackgroundColor="#1C355E"
+			Padding="0,0,0,15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label 
+				HorizontalOptions="Start"
+				VerticalOptions="Start"
+				TranslationY="20"
+				Margin="20,0"
+				Text="{ x:Static local:GrialShapesFont.Menu }"
+				FontSize="22"
+				TextColor="{ DynamicResource CustomNavBarTextColor }" 
+				Style="{ StaticResource FontIcon }">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnHamburgerIconTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Image
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="buyandsell_logo.png"
+                HeightRequest="50"
+                WidthRequest="150"/>
+
+        <!--SearchCommand="{Binding SearchTxtCommand}"-->
+        <SearchBar
+                x:Name="SearchFor"
+                Text="{Binding SearchTxt}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchFor}}"
+                Grid.Row="1"
+                HorizontalOptions="Start"
+                Margin="0,0,0,0"
+                WidthRequest="500"
+                VerticalOptions="Center"
+                TranslationY="20"
+                PlaceholderColor="Black"
+                BackgroundColor="White"
+                HeightRequest="40"
+                Placeholder="Search Item.."/>
+
+        <Label 
+				HorizontalOptions="End"
+				TranslationY="20"
+				Margin="12,0,20,0"
+				VerticalOptions="Start"
+				Text="{ x:Static local:GrialShapesFont.Create } " 
+				FontSize="22"
+				TextColor="{ DynamicResource CustomNavBarTextColor }" 
+				Style="{ StaticResource FontIcon }">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCogIconTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid >
+</ContentView>

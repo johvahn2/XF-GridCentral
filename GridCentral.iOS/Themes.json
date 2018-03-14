@@ -1,0 +1,9 @@
+    {
+        "ThemeSyncEnabled": false,
+        "AppXamlFullPath": null,
+        "AppXamlProjectFullPath": null,
+        "iOSColorsFileName": "ThemeColors.cs",
+        "AndroidColorsFile": "Resources\\values\\Colors.xml",
+        "iOSColorsNamespace": null,
+        "ThemesFolder":"Themes"
+    }

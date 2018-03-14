@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridCentral.Views.Profile.MyItems"
+             xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+             xmlns:local="clr-namespace:GridCentral"
+             BackgroundColor="White"
+             Title="My Items">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="searchIcon" Command="{Binding SearchCommand}"/>
+        <ToolbarItem x:Name="addIcon" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Grid
+            HeightRequest="85"
+			RowSpacing="0"
+			Padding="0"
+			x:Name="EcommerceProductGridBanner"
+			VerticalOptions="Center"
+			Style="{StaticResource EcommerceProductGridBannerStyle}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60*" />
+                <RowDefinition Height="40*" />
+            </Grid.RowDefinitions>
+
+
+            <Label
+				Grid.Row="0"
+				Text="You can only have 10 visible items"
+                FontSize="Default"
+				TranslationY="2"
+				TextColor="{ DynamicResource EcommercePromoTextColor }"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"/>
+
+            <Label
+				Grid.Row="1"
+				FontSize="{ artina:OnOrientationDouble 
+					Default=14,
+					PortraitTablet=20,
+					LandscapeTablet=20 }"
+				TranslationY="-5"
+				Text="Tap to close!" 
+				TextColor="{ DynamicResource EcommercePromoTextColor }"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"/>
+        </Grid>
+        <StackLayout IsVisible="{Binding ShowSearchBar}">
+            <SearchBar
+                x:Name="SearchFor"
+                HorizontalOptions="Start"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchFor}}" SearchCommand="{Binding SearchTxt}" Text="{Binding TxtSearch}"
+                Margin="0,0,0,20"
+                WidthRequest="500"
+                VerticalOptions="Center"
+                TranslationY="20"
+                PlaceholderColor="Black"
+                BackgroundColor="White"
+                HeightRequest="40"
+                Placeholder="Search Item.."/>
+        </StackLayout>
+        <StackLayout HorizontalOptions="Center">
+            <Label IsVisible="{Binding noItems}" Text="No Items Found" FontAttributes="Bold" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+            <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <ListView x:Name="listView" HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsListRefereshing}"  ItemsSource="{Binding RevMyItems}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Command="{Binding DeleteItemCommand}" CommandParameter="{Binding Name}"/>
+                        </ViewCell.ContextActions>
+                        <Grid HeightRequest="130" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <ActivityIndicator Color="{DynamicResource AccentColor}" IsRunning="{Binding Source={x:Reference thumbnailer},Path=IsLoading}"
+                                               Grid.Column="0" Grid.Row="1"/>
+                            <Image x:Name="thumbnailer" Source="{Binding Thumbnail}" Aspect="AspectFill" BackgroundColor="#eeeeee" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"/>
+                            <Label Text="{Binding SummaryName}" FontSize="Medium" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding SummaryDesc}" FontSize="10" Grid.Row="1" Grid.Column="1"/>
+                            <Label Text="{Binding Price, StringFormat='$ {0:F0}'}}" Margin="8,0,0,0" Grid.Row="2" Grid.Column="1"/>
+                            <Label Text="{Binding Timeago}" Grid.Row="2" Grid.Column="1" HorizontalOptions="End"/>
+                            <Label Text="{Binding Visable}" Grid.Row="2" Grid.Column="0" HorizontalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

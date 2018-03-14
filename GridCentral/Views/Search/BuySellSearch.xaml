@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GridCentral"
+             xmlns:elmt="clr-namespace:GridCentral.Elements"
+             xmlns:nav="clr-namespace:GridCentral.Views.Common"
+	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
+	         BackgroundColor="White"
+             x:Class="GridCentral.Views.Search.BuySellSearch">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- CUSTOM NAVBAR -->
+        <nav:BuySellNavBar Grid.Row="0"/>
+
+        <StackLayout Spacing="0" Grid.Row="1">
+
+            <AbsoluteLayout>
+                <elmt:BindablePicker 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        x:Name="Categories" BackgroundColor="White" 
+                        Title="Category" HeightRequest="50" 
+                        TextColor="Black" ItemsSource="{Binding CategoryItems}" SelectedIndex="{Binding CategoryIndex}"/>
+                <Label
+                        AbsoluteLayout.LayoutBounds="1,0.5,30,30"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+					    FontSize="30"
+					    Text="{ x:Static local:GrialShapesFont.ArrowDown }" 
+					    Style="{StaticResource FontIcon}"
+					    TextColor="Black"/>
+            </AbsoluteLayout>
+
+            <StackLayout  HorizontalOptions="Center">
+                <Label IsVisible="{Binding noItems}" Text="No Items Found" FontAttributes="Bold" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+                <ActivityIndicator Color="Red" Margin="0,10,0,0" HeightRequest="25" WidthRequest="25" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <ListView  x:Name="listView" HasUnevenRows="True"  ItemsSource="{Binding SearchList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="5" HeightRequest="110">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2.8*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ActivityIndicator 
+                                        Grid.RowSpan="2"
+                                        Color="{DynamicResource AccentColor}" IsRunning="{Binding Source={x:Reference thumbnailer},Path=IsLoading}"/>
+                                <Image x:Name="thumbnailer" Source="{Binding Thumbnail}" Aspect="Fill" Grid.RowSpan="2" BackgroundColor="#cccccc"/>
+
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"/>
+                                    <Label FontSize="10" Text="{Binding Description}"/>
+                                    <!--158-->
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label HorizontalOptions="Start" Text="{Binding Manufacturer}" FontSize="Micro" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                                        <Label HorizontalOptions="EndAndExpand" Text="{Binding Timeago}" Margin="0,0,10,0" FontSize="Micro" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding State}" TextColor="{Binding StateColor}" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                    <BoxView Grid.Column="1" BackgroundColor="Black" WidthRequest="0.8" HeightRequest="3"/>
+
+                                    <Label Grid.Column="2" Text="{Binding Quantity, StringFormat='QTY: {0:F0}'}"  HorizontalOptions="Center"/>
+
+                                    <BoxView Grid.Column="3" BackgroundColor="Black" WidthRequest="0.8" HeightRequest="3"/>
+
+                                    <Label Grid.Column="4" Text="{Binding Price, StringFormat='{0:F0} XCD'}" HorizontalOptions="Center"/>
+
+
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
