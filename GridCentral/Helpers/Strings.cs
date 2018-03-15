@@ -10,8 +10,8 @@ namespace GridCentral.Helpers
     {
 
         //Global Strings
-        public static readonly string Version = "1.2.1 (22)";
-        public static readonly string IOS_Version = "1.3 (4)";
+        public static readonly string Version = "1.2.2 (23)";
+        public static readonly string IOS_Version = "1.4 (5)";
         public static readonly string Grid_Central = "Grid Central";
         public static readonly string Grid_Central_PhoneNumber1 = "771-1474";
         public static readonly string Grid_Central_PhoneNumber2 = "720-5540";
