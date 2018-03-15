@@ -2,6 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GridCentral"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
 	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
              x:Class="GridCentral.Views.Home.Template.InspiredItemTemplate">
 
@@ -15,7 +17,7 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <Image BackgroundColor="#eeeeee" Aspect="Fill" Source="{Binding Thumbnail}" Grid.Column="0" Grid.Row="0"/>
+            <ffimageloading:CachedImage FadeAnimationEnabled="True" BackgroundColor="#eeeeee" Aspect="Fill" Source="{Binding Thumbnail}" Grid.Column="0" Grid.Row="0"/>
             <StackLayout Grid.Column="1" Margin="15,0,0,0">
                 <Label Text="{Binding Name}" FontSize="Default"/>
                 <Label Text="{Binding Manufacturer}" FontAttributes="Bold" FontSize="Micro" TextColor="{DynamicResource AccentColor}"/>
