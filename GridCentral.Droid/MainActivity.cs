@@ -127,6 +127,7 @@ namespace GridCentral.Droid
 
         protected override void OnDestroy()
         {
+            App.Current.MainPage = new ContentPage();
             base.OnDestroy();
             UnregisterManagers();
             GCMService.mIsInForegroundMode = false;

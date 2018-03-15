@@ -3,6 +3,7 @@ using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Navigation;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,7 @@ namespace GridCentral.ViewModels
                     DialogService.ShowError(result);
                 }
             }
-            catch (Exception ex) { DialogService.ShowError(Strings.Try_Later);}
+            catch (Exception ex) { DialogService.ShowError(Strings.Try_Later); Crashes.TrackError(ex);}
             finally { IsBusy = false; }
 
         }

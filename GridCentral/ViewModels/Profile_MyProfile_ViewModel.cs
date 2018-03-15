@@ -1,5 +1,6 @@
 ﻿using GridCentral.Helpers;
 using GridCentral.Services;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -78,6 +79,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }

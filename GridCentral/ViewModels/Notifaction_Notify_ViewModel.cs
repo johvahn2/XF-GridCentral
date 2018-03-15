@@ -4,6 +4,7 @@ using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.ObjectViews;
 using GridCentral.Views.Rate;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -92,6 +93,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
         }
 
@@ -141,6 +143,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; IsRefresing = false; }
         }

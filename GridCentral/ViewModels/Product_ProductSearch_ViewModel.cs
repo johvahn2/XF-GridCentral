@@ -2,6 +2,7 @@
 using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Navigation;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -169,6 +170,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
@@ -229,6 +231,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
@@ -276,6 +279,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return;
             }
             finally { IsBusy = false; }
@@ -380,6 +384,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
         }
 

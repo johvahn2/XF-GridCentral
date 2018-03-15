@@ -2,6 +2,7 @@
 using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -225,6 +226,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
 

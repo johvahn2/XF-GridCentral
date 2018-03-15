@@ -4,6 +4,7 @@ using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Navigation;
 using GridCentral.Views.Order;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Settings;
 using System;
 using System.Collections.Generic;
@@ -274,6 +275,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }

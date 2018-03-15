@@ -3,6 +3,7 @@ using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.BuySell;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return null;
             }
             finally { IsBusy = false;}
@@ -193,6 +195,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return null;
             }
             finally { IsBusy = false;}
@@ -244,6 +247,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return null;
             }
             finally { IsBusy_Deal = false; }
@@ -309,6 +313,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return null;
             }
             finally { IsBusy_Recent = false; }

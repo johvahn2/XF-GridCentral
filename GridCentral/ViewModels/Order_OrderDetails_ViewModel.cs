@@ -3,6 +3,7 @@ using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Contact;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Settings;
 using System;
 using System.Collections.Generic;
@@ -309,7 +310,7 @@ namespace GridCentral.ViewModels
             }
             catch(Exception ex)
             {
-
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = true; isUpdatable = false; }
         }
@@ -399,6 +400,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 await _pageService.PopAsync();
             }
             finally { IsBusy = false; }

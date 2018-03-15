@@ -4,6 +4,7 @@ using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Auth;
 using GridCentral.Views.Navigation;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -120,6 +121,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowErrorToast(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
@@ -168,6 +170,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowErrorToast(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
@@ -200,6 +203,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowErrorToast(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }

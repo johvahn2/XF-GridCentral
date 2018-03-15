@@ -3,6 +3,7 @@ using GridCentral.Helpers;
 using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -316,6 +317,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
@@ -384,6 +386,7 @@ namespace GridCentral.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
 
         }
@@ -437,6 +440,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return null;
             }
             finally { IsBusy = false; /*IsListRefereshing = false;*/ }
@@ -482,6 +486,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
 
 
@@ -524,6 +529,7 @@ namespace GridCentral.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
 
         }
@@ -591,6 +597,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
                 return;
             }
             finally { IsBusy = false; IsListRefereshing = false; }

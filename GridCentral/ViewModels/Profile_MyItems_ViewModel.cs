@@ -3,6 +3,7 @@ using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Profile;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -167,6 +168,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
@@ -280,6 +282,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsListRefereshing = false; IsBusy = false; }
 
@@ -326,6 +329,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
         }
     }

@@ -3,6 +3,7 @@ using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Auth;
 using GridCentral.Views.Auth.ProfileSetup_Pages;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Settings;
 using System;
 using System.Collections.Generic;
@@ -150,6 +151,7 @@ namespace GridCentral.ViewModels
             catch (Exception ex)
             {
                 DialogService.ShowError("Try Later");
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }

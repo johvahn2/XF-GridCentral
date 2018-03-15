@@ -3,6 +3,7 @@ using GridCentral.Interfaces;
 using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Order;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Connectivity;
 using Plugin.Settings;
 using System;
@@ -102,6 +103,7 @@ namespace GridCentral.ViewModels
 
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false;}
         }
@@ -182,6 +184,7 @@ namespace GridCentral.ViewModels
             {
                 Debug.WriteLine(Keys.TAG + ex);
                 DialogService.ShowError(Strings.SomethingWrong);
+                Crashes.TrackError(ex);
             }
 
 }

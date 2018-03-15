@@ -4,6 +4,7 @@ using GridCentral.Models;
 using GridCentral.Services;
 using GridCentral.Views.Auth.ProfileSetup_Pages;
 using GridCentral.Views.Navigation;
+using Microsoft.AppCenter.Crashes;
 using Plugin.ImageResizer;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -235,6 +236,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
 
             }
             finally { IsBusy = false; }
@@ -291,6 +293,7 @@ namespace GridCentral.ViewModels
             {
                 DialogService.ShowError(Strings.SomethingWrong);
                 Debug.WriteLine(Keys.TAG + ex);
+                Crashes.TrackError(ex);
             }
             finally { IsBusy = false; }
         }
