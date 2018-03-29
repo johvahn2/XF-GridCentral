@@ -24,7 +24,7 @@ namespace GridCentral.Views.Navigation.Home
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DashBoard : ContentPage
     {
-        int ad1 = 0; int ad2 = 0;
+        int ad1 = 0; int ad2 = 0; int ad3 = 0;
         public DashBoard()
         {
             viewModel = new Main_DashBoard_ViewModel(new PageService(Navigation));
@@ -92,7 +92,7 @@ namespace GridCentral.Views.Navigation.Home
             }
             PopulateDealList(await viewModel.GetDeals());
             PopulateNewList(await viewModel.GetRecentroducts());
-            getAds1();getAds2();
+            getAds1();getAds2(); getAds3();
         }
 
         //public void PopulateInetrestLists(ObservableCollection<Product> productsList)
@@ -378,6 +378,36 @@ namespace GridCentral.Views.Navigation.Home
             }
         }
 
+        private async void getAds3()
+        {
+            try
+            {
+                var result = await AdService.Instance.FetchAds("dashboard-Footer");
+                if (result == null) return;
+                ad3 = result.Count;
+                ObservableCollection<mCarouselImage> car = new ObservableCollection<mCarouselImage>();
+                for (var i = 0; i < result.Count; i++)
+                {
+                    if (result[i].Show == "true")
+                    {
+                        car.Add(new mCarouselImage() { Image = result[i].Image, Description = result[i].Description });
+                    }
+                    else
+                    {
+                        ad2--;
+                    }
+
+                }
+                CarouselImages3.ItemsSource = car;
+                changeposit3();
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(Keys.TAG + ex);
+            }
+        }
+
         async void changeposit2()
         {
             if (ad2 < 2) return;
@@ -400,6 +430,20 @@ namespace GridCentral.Views.Navigation.Home
                 for (var i = 0; i < ad1; i++)
                 {
                     CarouselImages1.Position = i;
+                    await Task.Delay(2500);
+                }
+            }
+        }
+
+        async void changeposit3()
+        {
+            if (ad3 < 2) return;
+
+            while (1 > 0)
+            {
+                for (var i = 0; i < ad3; i++)
+                {
+                    CarouselImages3.Position = i;
                     await Task.Delay(2500);
                 }
             }

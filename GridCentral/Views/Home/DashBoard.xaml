@@ -53,7 +53,7 @@
                                AbsoluteLayout.LayoutBounds="1,0,0.4,1"
                                AbsoluteLayout.LayoutFlags="All"/>
                     </AbsoluteLayout>
-                    <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="74">
+                    <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="100">
                         <cvv:CarouselViewControl x:Name="CarouselImages1" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad1}" ShowIndicators="False">
                             <cvv:CarouselViewControl.ItemTemplate>
                                 <DataTemplate>
@@ -130,7 +130,7 @@
                 <!---Ads Space-->
                 <Label Text="Featured Brands" Margin="10,10,10,0" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"/>
                 
-                <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="100" Margin="7">
+                <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="160" Margin="7">
                     <cvv:CarouselViewControl x:Name="CarouselImages2" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad2}" ShowIndicators="False">
                         <cvv:CarouselViewControl.ItemTemplate>
                             <DataTemplate>
@@ -159,6 +159,20 @@
 
                     </StackLayout>
                 </Frame>
+
+                <AbsoluteLayout BackgroundColor="#cccccc" HeightRequest="200" Margin="7">
+                    <cvv:CarouselViewControl x:Name="CarouselImages3" BackgroundColor="#cccccc" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" ItemsSource="{Binding Ad3}" ShowIndicators="False">
+                        <cvv:CarouselViewControl.ItemTemplate>
+                            <DataTemplate>
+                                <AbsoluteLayout>
+                                    <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="Red" IsRunning="{Binding Source={x:Reference Advert3},Path=IsLoading}"/>
+                                    <Image x:Name="Advert3" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                </AbsoluteLayout>
+                            </DataTemplate>
+                        </cvv:CarouselViewControl.ItemTemplate>
+                    </cvv:CarouselViewControl>
+                    <BoxView x:Name="ViewAd3" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
             </StackLayout>
         </ScrollView>
     </Grid>
