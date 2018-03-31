@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GridCentral.Views.Navigation.Home.DashBoard"
              xmlns:local="clr-namespace:GridCentral"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:cvv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:nav="clr-namespace:GridCentral.Views.Common"
 	         xmlns:artina="clr-namespace:UXDivers.Artina.Shared;assembly=UXDivers.Artina.Shared"
@@ -59,7 +61,7 @@
                                 <DataTemplate>
                                     <AbsoluteLayout>
                                         <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="Red" IsRunning="{Binding Source={x:Reference Advert1},Path=IsLoading}"/>
-                                        <Image x:Name="Advert1" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                        <ffimageloading:CachedImage FadeAnimationEnabled="true" x:Name="Advert1" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
                                     </AbsoluteLayout>
                                 </DataTemplate>
                             </cvv:CarouselViewControl.ItemTemplate>
@@ -136,7 +138,7 @@
                             <DataTemplate>
                                 <AbsoluteLayout>
                                     <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="Red" IsRunning="{Binding Source={x:Reference Advert2},Path=IsLoading}"/>
-                                    <Image x:Name="Advert2" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                    <ffimageloading:CachedImage FadeAnimationEnabled="true" x:Name="Advert2" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
                                 </AbsoluteLayout>
                             </DataTemplate>
                         </cvv:CarouselViewControl.ItemTemplate>
@@ -166,7 +168,7 @@
                             <DataTemplate>
                                 <AbsoluteLayout>
                                     <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5,0.5,35,35" AbsoluteLayout.LayoutFlags="PositionProportional" Color="Red" IsRunning="{Binding Source={x:Reference Advert3},Path=IsLoading}"/>
-                                    <Image x:Name="Advert3" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
+                                    <ffimageloading:CachedImage  FadeAnimationEnabled="true" x:Name="Advert3" AbsoluteLayout.LayoutBounds="0,0,1,1"  AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{Binding Image}"/>
                                 </AbsoluteLayout>
                             </DataTemplate>
                         </cvv:CarouselViewControl.ItemTemplate>
