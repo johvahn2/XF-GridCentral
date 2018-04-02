@@ -116,14 +116,14 @@
                         <Label Text="Terms of Services" FontSize="Micro" TextColor="Orange" WidthRequest="150" 
                              HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer/>
+                                <TapGestureRecognizer Tapped="TOS_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label>
                         <Label Text=" and " FontSize="Micro" HorizontalOptions="CenterAndExpand"  Grid.Row="0" />
                         <Label Text="Return Policy" FontSize="Micro" TextColor="Orange" HorizontalOptions="CenterAndExpand"
                                 HorizontalTextAlignment="Center" Grid.Row="0">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer/>
+                                <TapGestureRecognizer Tapped="RtnPolicy_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>

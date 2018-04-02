@@ -3,6 +3,7 @@ using GridCentral.Services;
 using GridCentral.ViewModels;
 using GridCentral.Views.Navigation;
 using GridCentral.Views.Order.Template;
+using GridCentral.Views.Settings;
 using Plugin.Settings;
 using System;
 using System.Collections.Generic;
@@ -100,9 +101,14 @@ namespace GridCentral.Views.Order
             viewModel.DeliveryTime = DeliveryTime.Text;
         }
 
+        private void TOS_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TermsOfService());
+        }
+
         private void RtnPolicy_Tapped(object sender, EventArgs e)
         {
-            DialogService.ShowToast("To come");
+            Navigation.PushAsync(new ReturnPolicy());
         }
     }
 }

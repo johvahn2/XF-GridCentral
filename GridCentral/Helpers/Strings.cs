@@ -267,5 +267,8 @@ namespace GridCentral.Helpers
         public static readonly string TermsandConditions = " Items sold inside of the free section are not in any regards in association with grid central. Any communication or agreements made through Grid Centrals is operating with understanding that Grid Central is in no way responsible or associated with any transaction completed and will not be at fault in the case of bad, damaged or Fictitious items Users are responsible for providing correct and thorough detailed information on any items being sold. Users are only allowed to sell 20 items at a time period. Grid Central will not in anyway be associated with stolen items, and are not responsible for any transactions done between any parties outside of the app. Grid Central is not responsible for any occurrences of sellers posting illegal items or conducting any transactions of the aforementioned items. Grid Central has the authority to add or remove members /users at will ir found breaking the rules or doing things not in favor of the company.";
 
 
+        public static readonly string ReturnPolicy = "If the item is defective grid central will aid the customer in communicating with the seller and solving the problem an a reasonable time frame. If the item is sold by grid shop, a grid central representative will collect the damaged product and a new one will be given or refunded if the item is found damaged or defective. All items will be inspected and tested upon/before delivery for full functionality.";
+
+
     }
 }

@@ -326,6 +326,9 @@
     <Compile Include="Views\Settings\Main_List.xaml.cs">
       <DependentUpon>Main_List.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\ReturnPolicy.xaml.cs">
+      <DependentUpon>ReturnPolicy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\TermsOfService.xaml.cs">
       <DependentUpon>TermsOfService.xaml</DependentUpon>
     </Compile>
@@ -922,6 +925,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Order\Card\AddCard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Settings\ReturnPolicy.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

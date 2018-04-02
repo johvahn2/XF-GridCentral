@@ -21,9 +21,9 @@ namespace GridCentral.Views.Search
         {
             InitializeComponent();
 
+            PopulateCategories(Keys.ItemCategories);
             if(AccountService.Instance.Current_Account != null)
             {
-                PopulateCategories(Keys.ItemCategories);
 
                 if (AccountService.Instance.Current_Account.Interests == null || AccountService.Instance.Current_Account.Interests.Count < 1)
                 {
@@ -112,6 +112,10 @@ namespace GridCentral.Views.Search
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
+            if (AccountService.Instance.Current_Account == null)
+            {
+                return;
+            }
             Navigation.PushAsync(new Connector());
         }
     }
