@@ -36,6 +36,7 @@
 						Grid.Column="0"	
 						HeightRequest="40"
 						Placeholder="Name"
+                        Text="{Binding Name}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                     <!--LAST NAME ENTRY-->
@@ -44,6 +45,7 @@
 						Margin="6,0,0,0"
 						HeightRequest="40"
 						Placeholder="Last Name"
+                        Text="{Binding Lastname}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
                 </Grid>
 
@@ -58,6 +60,7 @@
 						Grid.Column="0"
 						HeightRequest="40"
 						Placeholder="Card Number"
+                        Text="{Binding Cardnumber}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                     <!--CVV NUMBER-->
@@ -66,29 +69,36 @@
 						Margin="6,0,0,0"
 						HeightRequest="40"
 						Placeholder="CVV"
+                        Text="{Binding Cvv}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
                 </Grid>
 
                 <!--EXPIRATION DATE-->
-                <Entry
+                <DatePicker
+                    Grid.Row="2"
+					HeightRequest="40"
+                    Format="MM-yyyy"
+                    Date="{Binding Expiredate}"/>
+                <!--<Entry
 						Grid.Row="2"
 						HeightRequest="40"
 						Placeholder="Expriation Date"
-						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
+						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>-->
 
                 <!--ADDRESS LINE 1-->
                 <Entry
 						Grid.Row="3"
 						HeightRequest="40"
 						Placeholder="Address Line 1"
+                        Text="{Binding Address1}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                 <!-- ADDRESS LINE 2 -->
                 <Entry
-                        BackgroundColor="Gray"
 						Grid.Row="4"
 						HeightRequest="40"
-						Placeholder="Address Line 2"
+						Placeholder="Address Line 2 *Optional*"
+                        Text="{Binding Address2}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                 <Grid Grid.Row="5" RowSpacing="10">
@@ -107,6 +117,7 @@
 						Grid.Column="0"
 						HeightRequest="40"
 						Placeholder="City"
+                        Text="{Binding City}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                     <!-- STATE ENTRY -->
@@ -114,6 +125,7 @@
 						Grid.Column="1"
 						HeightRequest="40"
 						Placeholder="State/Region"
+                        Text="{Binding Region}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                     <!--CITY ENTRY-->
@@ -122,6 +134,7 @@
 						Grid.Row="1"
 						HeightRequest="40"
 						Placeholder="Zip Code"
+                        Text="{Binding ZipCode}"
 						artina:EntryProperties.PlaceholderColor="{ DynamicResource BaseTextColor }"/>
 
                     <!-- Country Picker -->
@@ -131,11 +144,11 @@
                             Title="Countries" 
                             HeightRequest="40" 
                             Grid.Column="1"
-                            Grid.Row="1"
+                            Grid.Row="1"                    
                             TextColor="Black" ItemsSource="{Binding Countries}" SelectedIndex="{Binding Countryindex}"/>
                     
                 </Grid>
-                <Button Text="Add" Style="{DynamicResource PrimaryActionButtonStyle}" Grid.Row="6" VerticalOptions="End"/>
+                <Button Text="Add" Command="{Binding AddCommand}" Style="{DynamicResource PrimaryActionButtonStyle}" Grid.Row="6" VerticalOptions="End"/>
                 
                 <!-- Picture -->
                 <Grid Grid.Row="7" VerticalOptions="EndAndExpand"> <!--Need to go Down-->

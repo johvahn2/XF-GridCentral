@@ -2,6 +2,7 @@
 using GridCentral.Services;
 using GridCentral.ViewModels;
 using GridCentral.Views.Navigation;
+using GridCentral.Views.Order.Card;
 using GridCentral.Views.Order.Template;
 using GridCentral.Views.Settings;
 using Plugin.Settings;
@@ -21,11 +22,12 @@ namespace GridCentral.Views.Order
     public partial class ConfirmOrder : ContentPage
     {
         ObservableCollection<mCart> _CartList = new ObservableCollection<mCart>();
-        public ConfirmOrder(mOrderAddress address,ObservableCollection<mCart> CartList,bool usingCard = false)
+        public ConfirmOrder(mOrderAddress address,ObservableCollection<mCart> CartList,mCard card = null,bool usingCard = false)
         {
             _CartList = CartList;
-            viewModel = new Order_ConfirmOrder_ViewModel(new PageService(Navigation), address,CartList,usingCard);
+            viewModel = new Order_ConfirmOrder_ViewModel(new PageService(Navigation), address, card,CartList, usingCard);
             InitializeComponent();
+            CardScreen.IsVisible = false;
             NavigationPage.SetHasBackButton(this, false);
             CancelBtn.Clicked += CancelBtn_Clicked;
             PopulateCartList(CartList);
@@ -37,6 +39,11 @@ namespace GridCentral.Views.Order
             PageService pageService = new PageService();
             pageService.ShowMain(new RootPage());
             DialogService.HideLoading();
+        }
+
+        private void ChgCard_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddCard(_CartList));
         }
 
         private void ChgAddress_Tapped(object sender, EventArgs e)
@@ -83,6 +90,13 @@ namespace GridCentral.Views.Order
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if (!String.IsNullOrEmpty(CrossSettings.Current.GetValueOrDefault<string>("UseCard"))){
+                var CardContent = CrossSettings.Current.GetValueOrDefault<string>("UseCard");
+                mCard Card = Newtonsoft.Json.JsonConvert.DeserializeObject<mCard>(CardContent);
+                viewModel.CurrentCard = Card;
+                CardScreen.IsVisible = true; NoCardScreen.IsVisible = false;
+            }
 
             if (!String.IsNullOrEmpty(CrossSettings.Current.GetValueOrDefault<string>("FromTime")) ||
                 !String.IsNullOrEmpty(CrossSettings.Current.GetValueOrDefault<string>("ToTime")))

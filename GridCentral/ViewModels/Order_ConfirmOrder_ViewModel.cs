@@ -141,7 +141,9 @@ namespace GridCentral.ViewModels
         #endregion
         #region Payment Method
         string _paymentmethod;
-        string _currentcard;
+        mCard _currentcard;
+        string _card_lastdigit;
+        bool _nocard = false;
         bool _usecard = false;
 
         public bool UseCard
@@ -151,6 +153,15 @@ namespace GridCentral.ViewModels
             {
                 _usecard = value;
                 OnPropertyChanged("UseCard");
+            }
+        }
+        public bool NoCard
+        {
+            get { return _nocard; }
+            set
+            {
+                _nocard = value;
+                OnPropertyChanged("NoCard");
             }
         }
         public string PaymentMethod
@@ -163,13 +174,24 @@ namespace GridCentral.ViewModels
             }
         }
 
-        public string CurrentCard
+        public string Card_lastdigit
+        {
+            get { return _card_lastdigit; }
+            set
+            {
+                _card_lastdigit = value;
+                OnPropertyChanged("Card_lastdigit");
+            }
+        }
+
+        public mCard CurrentCard
         {
             get { return _currentcard; }
             set
             {
                 _currentcard = value;
                 OnPropertyChanged("CurrentCard");
+                Card_lastdigit = CurrentCard.Cardnumber.Substring(12);
             }
         }
         #endregion
@@ -191,9 +213,13 @@ namespace GridCentral.ViewModels
         public ICommand PlaceOrderCommand { get; private set; }
         IPageService _pageSerivce;
         mOrderAddress _address;
-        public Order_ConfirmOrder_ViewModel(IPageService pageService,mOrderAddress address, ObservableCollection<mCart> CartList, bool usingCard)
+        public Order_ConfirmOrder_ViewModel(IPageService pageService,mOrderAddress address, mCard Card, ObservableCollection<mCart> CartList, bool usingCard)
         {
+            //Display Card Info use CurrentCard
+            if (address != null)
+            {
             _address = address;
+            }
             _pageSerivce = pageService;
             PlaceOrderCommand = new Command(() => PlaceOrder(CartList));
             PriceSum(CartList);
@@ -250,8 +276,18 @@ namespace GridCentral.ViewModels
                     Address2 = Address2,
                     PhoneNumber = _address.PhoneNumber,
                     ProfileNumber = AccountService.Instance.Current_Account.PhoneNumber,
+                    CardInfo = CurrentCard,
                     Name = Name
                 };
+
+                if (UseCard)
+                {
+                    newOrder.PaymentType = "Card";
+                }
+                else
+                {
+                    newOrder.PaymentType = "NoCard";
+                }
 
                 var result = await OrderService.Instance.SendOrder(newOrder);
 

@@ -80,10 +80,16 @@
                         <Label Text='Payment Method' FontSize="Medium" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
                         <Label Text="{Binding PaymentMethod}" Margin="8" FontSize="Small" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
                         <Frame IsVisible="{Binding UseCard}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ChgCard_Tapped"/>
+                            </Frame.GestureRecognizers>
                             <StackLayout Orientation="Horizontal">
-                                <StackLayout Spacing="-4">
+                                <StackLayout x:Name="CardScreen" Spacing="-4">
                                     <Label Text='Payment Card' FontSize="Small" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
-                                    <Label Text='Visa ending in 3355' Margin="8" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Card_lastdigit, StringFormat='Visa ending in {0:F0}'}" Margin="8" FontSize="Micro" FontAttributes="Bold"/>
+                                </StackLayout>
+                                <StackLayout x:Name="NoCardScreen">
+                                    <Label Text='Add Card' Margin="8" FontSize="Micro" FontAttributes="Bold"/>
                                 </StackLayout>
 
                                 <Label

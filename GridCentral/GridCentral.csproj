@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\IPageService.cs" />
     <Compile Include="Models\mAccount.cs" />
     <Compile Include="Models\mAdvert.cs" />
+    <Compile Include="Models\mCard.cs" />
     <Compile Include="Models\mCarouselImage.cs" />
     <Compile Include="Models\mCart.cs" />
     <Compile Include="Models\mNotify.cs" />

@@ -157,29 +157,29 @@ namespace GridCentral.ViewModels
                 DialogService.HideLoading();
 
                 bool useCard = false; //temp
-                //string payment_response = await DialogService.DisplayActionSheet("Payment Methods", "Close", null, Strings.Cash_On_Delivery, Strings.Credit_Debit_Card);
+                string payment_response = await DialogService.DisplayActionSheet("Payment Methods", "Close", null, Strings.Cash_On_Delivery, Strings.Credit_Debit_Card);
 
-                //if (payment_response == Strings.Credit_Debit_Card)
-                //{
-                //    useCard = true;
-                //    DialogService.ShowToast("Not Available At The Moment");
-                //    return;
-                //}else if (payment_response == Strings.Cash_On_Delivery)
-                //{
-                //    useCard = false;
-                //}
-                //else
-                //{
-                //    return;
-                //}
+                if (payment_response == Strings.Credit_Debit_Card)
+                {
+                    useCard = true;
+                    //DialogService.ShowToast("Not Available At The Moment");
+                    ///return;
+                }else if (payment_response == Strings.Cash_On_Delivery)
+                {
+                    useCard = false;
+                }
+                else
+                {
+                    return;
+                }
 
 
                 if(address == null)
                 {
-                    await _pageService.PushAsync(new ConfirmOrder(null,MyCartList,useCard));
+                    await _pageService.PushAsync(new ConfirmOrder(null,MyCartList,null,useCard));
                     return;
                 }
-                await _pageService.PushAsync(new ConfirmOrder(address[0],MyCartList,useCard));
+                await _pageService.PushAsync(new ConfirmOrder(address[0],MyCartList,null,useCard));
 
             }
             catch(Exception ex)

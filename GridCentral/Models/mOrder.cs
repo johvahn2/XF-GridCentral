@@ -33,6 +33,9 @@ namespace GridCentral.Models
         public string Address2 { get; set; }
 
 
+        [JsonProperty("CardInfo")]
+        public mCard CardInfo { get; set; }
+
         [JsonProperty("Name")]
         public string Name { get; set; }
 
@@ -53,6 +56,9 @@ namespace GridCentral.Models
 
         [JsonProperty("TaxPrice")]
         public string TaxPrice { get; set; }
+
+        [JsonProperty("PaymentType")]
+        public string PaymentType { get; set; }
 
         [JsonProperty("ItemTotal")]
         public string ItemTotal { get; set; }

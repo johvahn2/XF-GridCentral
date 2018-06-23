@@ -1,9 +1,17 @@
-﻿using GridCentral.Interfaces;
+﻿using GridCentral.Helpers;
+using GridCentral.Interfaces;
+using GridCentral.Models;
+using GridCentral.Services;
+using GridCentral.Views.Order;
+using Plugin.Settings;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace GridCentral.ViewModels
 {
@@ -11,18 +19,20 @@ namespace GridCentral.ViewModels
     {
 
         #region Bind Property
+
         string _name;
         string _lastname;
         string _cardnumber;
         string _cvv;
-        string _expiredate;
+        DateTime _expiredate = new DateTime();
+        //DateTime _miniExpireDate = new DateTime().Date;
         string _address1;
         string _address2;
         string _city;
         string _region;
         string _zipcode;
         int _countryindex;
-        List<string> _countries;
+        List<string> _countries = Keys.Countries;
 
 
         public int Countryindex
@@ -85,7 +95,7 @@ namespace GridCentral.ViewModels
             }
         }
 
-        public string Expiredate
+        public DateTime Expiredate
         {
             get { return _expiredate; }
             set
@@ -94,6 +104,16 @@ namespace GridCentral.ViewModels
                 OnPropertyChanged("Expiredate");
             }
         }
+
+        //public DateTime MiniExpireDate
+        //{
+        //    get { return _miniExpireDate; }
+        //    set
+        //    {
+        //        _miniExpireDate = value;
+        //        OnPropertyChanged("MiniExpireDate");
+        //    }
+        //}
 
         public string Address1
         {
@@ -144,15 +164,58 @@ namespace GridCentral.ViewModels
             }
         }
 
+        public ICommand AddCommand { get; private set; }
+
         #endregion
 
         IPageService _pageService;
+        ObservableCollection<mCart> _CartList = new ObservableCollection<mCart>();
 
-        public Order_AddCard_ViewModel(IPageService pageSerivce)
+        public Order_AddCard_ViewModel(IPageService pageService, ObservableCollection<mCart> CartList)
         {
-            _pageService = pageSerivce;
-
+            _CartList = CartList;
+            _pageService = pageService;
+            AddCommand = new Command(async () => await AddAction());
 
         }
+
+        private async Task AddAction()
+        {
+            DialogService.ShowLoading("Proceeding");
+
+            var SelectedCountries = Countries[Countryindex];
+
+            mCard card = new mCard()
+            {
+                Name = Name,
+                Lastname = Lastname,
+                Address1 = Address1,
+                Address2 = Address2,
+                Cardnumber = Cardnumber,
+                City = City,
+                Cvv = Cvv,
+                Expiredate = Expiredate,
+                Region = Region,
+                ZipCode = ZipCode,
+                Country = SelectedCountries
+            };
+
+            var CardContent = Newtonsoft.Json.JsonConvert.SerializeObject(card);
+            CrossSettings.Current.AddOrUpdateValue<string>("UseCard", CardContent);
+            await _pageService.PopAsync();
+            //if (_CartList != null)
+            //{
+            //    await _pageService.PushAsync(new ConfirmOrder(null,_CartList,card));
+            //}
+            //else
+            //{
+            //    var CardContent = Newtonsoft.Json.JsonConvert.SerializeObject(card);
+            //    CrossSettings.Current.AddOrUpdateValue<string>("UseCard", CardContent);
+            //    await _pageService.PopAsync();
+            //}
+            DialogService.HideLoading();
+
+        }
+
     }
 }

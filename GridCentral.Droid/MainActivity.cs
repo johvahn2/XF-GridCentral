@@ -89,7 +89,7 @@ namespace GridCentral.Droid
                 //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
                 //    this,
                 //    new UXDivers.Gorilla.Config("Good Gorilla").RegisterAssembliesFromTypes<UXDivers.Artina.Shared.CircleImage,
-                //    GrialShapesFont, BindablePicker,XLabs.Forms.Controls.CheckBox,CarouselViewControl>()));
+                //    GrialShapesFont, BindablePicker, XLabs.Forms.Controls.CheckBox, CarouselViewControl>()));
             }
 
             try
