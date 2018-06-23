@@ -86,7 +86,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout x:Name="CardScreen" Spacing="-4">
                                     <Label Text='Payment Card' FontSize="Small" FontAttributes="Bold" TextColor="{DynamicResource AccentColor}"/>
-                                    <Label Text="{Binding Card_lastdigit, StringFormat='Visa ending in {0:F0}'}" Margin="8" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Card_lastdigit, StringFormat='ending in {0:F0}'}" Margin="8" FontSize="Micro" FontAttributes="Bold"/>
                                 </StackLayout>
                                 <StackLayout x:Name="NoCardScreen">
                                     <Label Text='Add Card' Margin="8" FontSize="Micro" FontAttributes="Bold"/>
